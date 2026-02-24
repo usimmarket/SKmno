@@ -1,0 +1,474 @@
+{
+  "meta": {
+    "version": "3.5",
+    "unit": "pt",
+    "origin": "bottom-left"
+  },
+  "fields": {
+    "freet_group__kt": {
+      "x": 105,
+      "y": 801,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "freet_group"
+      ],
+      "on_value": "kt"
+    },
+    "freet_group__sk": {
+      "x": 62,
+      "y": 801,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "freet_group"
+      ],
+      "on_value": "sk"
+    },
+    "join_type__new": {
+      "x": 61,
+      "y": 763,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "join_type"
+      ],
+      "on_value": "new"
+    },
+    "join_type__port": {
+      "x": 113,
+      "y": 763,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "join_type"
+      ],
+      "on_value": "port"
+    },
+    "customer_type__foreigner": {
+      "x": 113,
+      "y": 741,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "customer_type"
+      ],
+      "on_value": "foreigner"
+    },
+    "customer_type__native": {
+      "x": 61,
+      "y": 741,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "customer_type"
+      ],
+      "on_value": "native"
+    },
+    "sim_type__esim": {
+      "x": 424,
+      "y": 466,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "sim_type"
+      ],
+      "on_value": "esim"
+    },
+    "autopay_method__bank": {
+      "x": 149,
+      "y": 656,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "autopay_method"
+      ],
+      "on_value": "bank"
+    },
+    "autopay_method__card": {
+      "x": 185,
+      "y": 656,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "autopay_method"
+      ],
+      "on_value": "card"
+    },
+    "mnp_pay_type__postpaid": {
+      "x": 171,
+      "y": 543,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "mnp_pay_type"
+      ],
+      "on_value": "postpaid"
+    },
+    "mnp_pay_type__prepaid": {
+      "x": 149,
+      "y": 543,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "mnp_pay_type"
+      ],
+      "on_value": "prepaid"
+    },
+    "prev_carrier_skt": {
+      "x": 399,
+      "y": 543,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
+      ],
+      "on_value": "skt"
+    },
+    "prev_carrier_kt": {
+      "x": 422,
+      "y": 543,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
+      ],
+      "on_value": "kt"
+    },
+    "prev_carrier_lgu": {
+      "x": 442,
+      "y": 543,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
+      ],
+      "on_value": "lgu"
+    },
+    "prev_carrier_mvno": {
+      "x": 468,
+      "y": 543,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
+      ],
+      "on_value": "mvno"
+    },
+    "birth": {
+      "x": 378,
+      "y": 720,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "birth"
+      ]
+    },
+    "subscriber_name_print": {
+      "x": 149,
+      "y": 726,
+      "size": 9,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
+    },
+    "addr": {
+      "x": 149,
+      "y": 675,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "addr"
+      ]
+    },
+    "autopay_holder_print": {
+      "x": 148,
+      "y": 640,
+      "size": 7,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "autopay_holder_print"
+      ]
+    },
+    "autopay_birth": {
+      "x": 378,
+      "y": 636,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "autopay_birth"
+      ]
+    },
+    "autopay_org": {
+      "x": 149,
+      "y": 613,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "autopay_org"
+      ]
+    },
+    "autopay_number": {
+      "x": 149,
+      "y": 593,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "autopay_number"
+      ]
+    },
+    "card_exp_month": {
+      "x": 422,
+      "y": 593,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "card_exp_month"
+      ]
+    },
+    "card_exp_year": {
+      "x": 401,
+      "y": 593,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "card_exp_year"
+      ]
+    },
+    "subscriber_name_print_1": {
+      "x": 390,
+      "y": 573,
+      "size": 7,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
+    },
+    "apply_date": {
+      "x": 197,
+      "y": 71,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "apply_date"
+      ]
+    },
+    "apply_date_1": {
+      "x": 144,
+      "y": 150,
+      "size": 12,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "apply_date"
+      ]
+    },
+    "wish4": {
+      "x": 165,
+      "y": 421,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "wish4"
+      ]
+    },
+    "port_number": {
+      "x": 212,
+      "y": 543,
+      "size": 13,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "port_number"
+      ]
+    },
+    "mvno_name": {
+      "x": 496,
+      "y": 542,
+      "size": 9,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "mvno_name"
+      ]
+    },
+    "sim_serial": {
+      "x": 338,
+      "y": 466,
+      "size": 8,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "sim_serial"
+      ]
+    },
+    "imei1": {
+      "x": 151,
+      "y": 401,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "imei1"
+      ]
+    },
+    "imei2": {
+      "x": 399,
+      "y": 401,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "imei2"
+      ]
+    },
+    "eid": {
+      "x": 151,
+      "y": 379,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "eid"
+      ]
+    },
+    "subscriber_name_print_2": {
+      "x": 420,
+      "y": 146,
+      "size": 7,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
+    },
+    "subscriber_name_print_3": {
+      "x": 420,
+      "y": 83,
+      "size": 7,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
+    },
+    "subscriber_name_print_4": {
+      "x": 364,
+      "y": 169,
+      "size": 10,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
+    },
+    "port_number_1": {
+      "x": 145,
+      "y": 174,
+      "size": 12,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "port_number"
+      ]
+    },
+    "seller_name": {
+      "x": 125,
+      "y": 202,
+      "size": 12,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "seller_name"
+      ]
+    },
+    "plan_name": {
+      "x": 103,
+      "y": 464,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "plan_name"
+      ]
+    },
+    "plan_name_1": {
+      "x": 39,
+      "y": 572,
+      "size": 7,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "plan_name"
+      ]
+    },
+    "base_monthly_fee": {
+      "x": 204,
+      "y": 571,
+      "size": 10,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "base_monthly_fee"
+      ]
+    },
+    "plan_disc": {
+      "x": 330,
+      "y": 571,
+      "size": 10,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "plan_disc"
+      ]
+    },
+    "final_monthly_fee": {
+      "x": 500,
+      "y": 570,
+      "size": 13,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "final_monthly_fee"
+      ]
+    },
+    "final_monthly_fee_1": {
+      "x": 469,
+      "y": 515,
+      "size": 20,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "final_monthly_fee"
+      ]
+    }
+  }
+}
