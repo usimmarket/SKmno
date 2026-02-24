@@ -215,7 +215,6 @@ label.radio:has(input:checked){border-color:rgba(6,182,212,.55);background:rgba(
         </div>
 
         <input id="addr_road" name="addr_road" type="text" data-i18n-placeholder="addr_road_ph" placeholder="도로명주소" readonly>
-        <input id="addr_jibun" name="addr_jibun" type="text" data-i18n-placeholder="addr_jibun_ph" placeholder="지번주소" readonly>
 <input id="addr_detail" name="addr_detail" type="text" data-i18n-placeholder="addr_detail_ph" placeholder="상세주소 (동/호/회사명/층 등)">
       </div>
     </div>
@@ -791,15 +790,8 @@ document.getElementById("printBtn").addEventListener("click", handlePrint);
       oncomplete: function(data){
         $("zip").value = data.zonecode || "";
         $("addr_road").value = data.roadAddress || data.address || "";
-        $("addr_jibun").value = data.jibunAddress || "";
-        // extra info (dong + building)
-        let extra = "";
-        const bname = data.bname || "";
-        const building = data.buildingName || "";
-        const isApt = data.apartment === "Y";
-        if(bname && /[동|로|가]$/g.test(bname)) extra += bname;
-        if(building) extra += (extra ? ", " : "") + building + (isApt ? "" : "");        $("addr_detail").focus();
-      }
+        $("addr_detail").focus();
+}
     }).open();
   }
   btn.addEventListener("click", openPopup);

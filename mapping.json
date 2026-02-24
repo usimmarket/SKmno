@@ -5,6 +5,28 @@
     "origin": "bottom-left"
   },
   "fields": {
+    "freet_group__kt": {
+      "x": 105,
+      "y": 801,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "freet_group"
+      ],
+      "on_value": "kt"
+    },
+    "freet_group__sk": {
+      "x": 62,
+      "y": 801,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "freet_group"
+      ],
+      "on_value": "sk"
+    },
     "join_type__new": {
       "x": 61,
       "y": 763,
@@ -26,6 +48,28 @@
         "join_type"
       ],
       "on_value": "port"
+    },
+    "customer_type__foreigner": {
+      "x": 113,
+      "y": 741,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "customer_type"
+      ],
+      "on_value": "foreigner"
+    },
+    "customer_type__native": {
+      "x": 61,
+      "y": 741,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "customer_type"
+      ],
+      "on_value": "native"
     },
     "sim_type__esim": {
       "x": 424,
@@ -59,6 +103,28 @@
         "autopay_method"
       ],
       "on_value": "card"
+    },
+    "mnp_pay_type__postpaid": {
+      "x": 171,
+      "y": 543,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "mnp_pay_type"
+      ],
+      "on_value": "postpaid"
+    },
+    "mnp_pay_type__prepaid": {
+      "x": 149,
+      "y": 543,
+      "size": 11,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "mnp_pay_type"
+      ],
+      "on_value": "prepaid"
     },
     "prev_carrier_skt": {
       "x": 399,
@@ -204,6 +270,26 @@
         "subscriber_name_print"
       ]
     },
+    "apply_date": {
+      "x": 197,
+      "y": 71,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "apply_date"
+      ]
+    },
+    "apply_date_1": {
+      "x": 144,
+      "y": 150,
+      "size": 12,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "apply_date"
+      ]
+    },
     "wish4": {
       "x": 165,
       "y": 421,
@@ -314,6 +400,16 @@
         "port_number"
       ]
     },
+    "seller_name": {
+      "x": 125,
+      "y": 202,
+      "size": 12,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "seller_name"
+      ]
+    },
     "plan_name": {
       "x": 103,
       "y": 464,
@@ -372,129 +468,6 @@
       "type": "text",
       "source": [
         "final_monthly_fee"
-      ]
-    },
-    "apply_date_year_p1": {
-      "x": 197,
-      "y": 71,
-      "size": 12,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "apply_date_year"
-      ]
-    },
-    "apply_date_month_p1": {
-      "x": 235,
-      "y": 71,
-      "size": 12,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "apply_date_month"
-      ]
-    },
-    "apply_date_day_p1": {
-      "x": 265,
-      "y": 71,
-      "size": 12,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "apply_date_day"
-      ]
-    },
-    "apply_date_year_p2": {
-      "x": 144,
-      "y": 150,
-      "size": 12,
-      "page": 2,
-      "type": "text",
-      "source": [
-        "apply_date_year"
-      ]
-    },
-    "apply_date_month_p2": {
-      "x": 182,
-      "y": 150,
-      "size": 12,
-      "page": 2,
-      "type": "text",
-      "source": [
-        "apply_date_month"
-      ]
-    },
-    "apply_date_day_p2": {
-      "x": 212,
-      "y": 150,
-      "size": 12,
-      "page": 2,
-      "type": "text",
-      "source": [
-        "apply_date_day"
-      ]
-    },
-    "esim_model": {
-      "x": 0,
-      "y": 0,
-      "size": 10,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "esim_model"
-      ]
-    },
-    "mnp1": {
-      "x": 0,
-      "y": 0,
-      "size": 11,
-      "page": 1,
-      "type": "checkbox",
-      "source": [
-        "mnp1"
-      ],
-      "on_value": "1"
-    },
-    "mnp2": {
-      "x": 0,
-      "y": 0,
-      "size": 11,
-      "page": 1,
-      "type": "checkbox",
-      "source": [
-        "mnp2"
-      ],
-      "on_value": "1"
-    },
-    "mnp3": {
-      "x": 0,
-      "y": 0,
-      "size": 11,
-      "page": 1,
-      "type": "checkbox",
-      "source": [
-        "mnp3"
-      ],
-      "on_value": "1"
-    },
-    "passport_info_print": {
-      "x": 0,
-      "y": 0,
-      "size": 9,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "passport_info_print"
-      ]
-    },
-    "esim_info_print": {
-      "x": 0,
-      "y": 0,
-      "size": 9,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "esim_info_print"
       ]
     }
   }

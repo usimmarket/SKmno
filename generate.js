@@ -70,13 +70,10 @@ exports.handler = async (event) => {
     data.apply_date_day = String(now.getDate()).padStart(2,'0');
 
     
-    // Compose printable address (Road + detail + Jibun)
+    // Compose printable address (Road + detail)
     const road = String(data.addr_road || '').trim();
-    const jibun = String(data.addr_jibun || '').trim();
-        const detail = String(data.addr_detail || '').trim();
-    let addrLine1 = [road, detail].filter(Boolean).join(' ').replace(/\s+/g,' ').trim();
-    let addrPrint = addrLine1;
-    if (jibun) addrPrint = addrPrint ? (addrPrint + '\n' + jibun) : jibun;
+    const detail = String(data.addr_detail || '').trim();
+    const addrPrint = [road, detail].filter(Boolean).join(' ').replace(/\s+/g,' ').trim();
     // keep mapping key "addr" for PDF printing
     data.addr = addrPrint;
 // Passport info print block (label + value)
@@ -136,6 +133,7 @@ if (String(data.sim_type || '') === 'esim') {
     const templatePath = path.join(root, "template.pdf");
     const fontPath = path.join(root, "malgun.ttf");
     const mappingPath = path.join(root, "mappings", "mapping.json");
+    const mappingPathFallback = path.join(root, "mapping.json");
 
     if(!fs.existsSync(templatePath)){
       return { statusCode: 500, body: "template.pdf not found in site root." };
@@ -152,8 +150,10 @@ if (String(data.sim_type || '') === 'esim') {
     }
 
     let mapping = { fields: {} };
-    if(fs.existsSync(mappingPath)){
+    if (fs.existsSync(mappingPath)) {
       mapping = JSON.parse(fs.readFileSync(mappingPath, "utf8"));
+    } else if (fs.existsSync(mappingPathFallback)) {
+      mapping = JSON.parse(fs.readFileSync(mappingPathFallback, "utf8"));
     }
 
     const pages = pdfDoc.getPages();
