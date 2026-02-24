@@ -215,6 +215,7 @@ label.radio:has(input:checked){border-color:rgba(6,182,212,.55);background:rgba(
         </div>
 
         <input id="addr_road" name="addr_road" type="text" data-i18n-placeholder="addr_road_ph" placeholder="도로명주소" readonly>
+        <input id="addr_jibun" name="addr_jibun" type="text" data-i18n-placeholder="addr_jibun_ph" placeholder="지번주소" readonly>
 <input id="addr_detail" name="addr_detail" type="text" data-i18n-placeholder="addr_detail_ph" placeholder="상세주소 (동/호/회사명/층 등)">
       </div>
     </div>
@@ -527,16 +528,11 @@ document.getElementById("card_exp_year").addEventListener("input", syncAutopay);
 document.getElementById("card_exp_month").addEventListener("input", syncAutopay);
 
 
-// ---- Foreigner name sync + print wrapping (25 chars) ----
+// ---- Name sync + print wrapping (25 chars) ----
 const subscriberNameEl = document.getElementById("subscriber_name");
 const holderEl = document.getElementById("autopay_holder");
 const subscriberPrintEl = document.getElementById("subscriber_name_print");
 const holderPrintEl = document.getElementById("autopay_holder_print");
-
-function isForeignerSelected(){
-  const checked = document.querySelector('input[name="customer_type"]:checked');
-  return checked && checked.value === "foreigner";
-}
 
 // Insert newline every 25 characters for PDF printing (hidden fields)
 function wrapEvery25(str){
@@ -545,7 +541,8 @@ function wrapEvery25(str){
   let out = "";
   for(let i=0;i<s.length;i++){
     out += s[i];
-    if((i+1) % 25 === 0 && i !== s.length - 1) out += "\n";
+    if((i+1) % 25 === 0 && i !== s.length - 1) out += "
+";
   }
   return out;
 }
@@ -555,23 +552,31 @@ function updatePrintNames(){
   if(holderPrintEl) holderPrintEl.value = wrapEvery25(holderEl ? holderEl.value.trim() : "");
 }
 
-function syncHolderIfForeigner(){
+// If the user manually edits holder, stop auto-overwriting it.
+let holderTouched = false;
+let isAutoSettingHolder = false;
+
+function syncHolderFromSubscriber(force=false){
   if(!subscriberNameEl || !holderEl) return;
-  if(isForeignerSelected()){
-    holderEl.value = subscriberNameEl.value;
+  const sub = subscriberNameEl.value || "";
+  const holder = holderEl.value || "";
+  if(force || !holderTouched || holder.trim()===""){
+    isAutoSettingHolder = true;
+    holderEl.value = sub;
+    isAutoSettingHolder = false;
   }
   updatePrintNames();
 }
 
 if(subscriberNameEl){
-  subscriberNameEl.addEventListener("input", ()=>{ syncHolderIfForeigner(); });
+  subscriberNameEl.addEventListener("input", ()=>{ syncHolderFromSubscriber(false); });
 }
 if(holderEl){
-  holderEl.addEventListener("input", ()=>{ updatePrintNames(); });
+  holderEl.addEventListener("input", ()=>{
+    if(!isAutoSettingHolder) holderTouched = true;
+    updatePrintNames();
+  });
 }
-document.querySelectorAll('input[name="customer_type"]').forEach(r=>{
-  r.addEventListener("change", ()=>{ syncHolderIfForeigner(); });
-});
 // ---- end ----
 
 
@@ -583,7 +588,7 @@ document.getElementById("resetBtn").addEventListener("click", ()=>{
   syncSim();
   syncPassport();
   syncAutopay();
-  syncHolderIfForeigner();
+  syncHolderFromSubscriber(true);
   updatePrintNames();
   const d = new Date();
   document.getElementById("apply_date_year").value = String(d.getFullYear());
@@ -597,7 +602,7 @@ async function buildPdfBlob(action){
   const applyDateEl = document.getElementById("apply_date");
   if(applyDateEl) applyDateEl.value = d.toISOString().slice(0,10);
   // keep print-wrapping fields synced
-  try{ syncHolderIfForeigner(); }catch(e){}
+  try{ syncHolderFromSubscriber(true); }catch(e){}
   try{ updatePrintNames(); }catch(e){}
 
   const form = document.getElementById("f");
@@ -775,7 +780,7 @@ document.getElementById("printBtn").addEventListener("click", handlePrint);
   syncSim();
   syncPassport();
   syncAutopay();
-  syncHolderIfForeigner();
+  syncHolderFromSubscriber(true);
   updatePrintNames();
 })();
 
@@ -790,8 +795,15 @@ document.getElementById("printBtn").addEventListener("click", handlePrint);
       oncomplete: function(data){
         $("zip").value = data.zonecode || "";
         $("addr_road").value = data.roadAddress || data.address || "";
-        $("addr_detail").focus();
-}
+        $("addr_jibun").value = data.jibunAddress || "";
+        // extra info (dong + building)
+        let extra = "";
+        const bname = data.bname || "";
+        const building = data.buildingName || "";
+        const isApt = data.apartment === "Y";
+        if(bname && /[동|로|가]$/g.test(bname)) extra += bname;
+        if(building) extra += (extra ? ", " : "") + building + (isApt ? "" : "");        $("addr_detail").focus();
+      }
     }).open();
   }
   btn.addEventListener("click", openPopup);
