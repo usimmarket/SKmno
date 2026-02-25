@@ -36,6 +36,16 @@
       "source": [
         "plan_name"
       ]
+    },
+    "base_monthly_fee": {
+      "x": 114,
+      "y": 615,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "base_monthly_fee"
+      ]
     }
   }
 }
