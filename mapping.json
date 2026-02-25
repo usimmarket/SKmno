@@ -6,8 +6,8 @@
   },
   "fields": {
     "join_type__new": {
-      "x": 65,
-      "y": 746,
+      "x": 69,
+      "y": 773,
       "size": 11,
       "page": 1,
       "type": "checkbox",
