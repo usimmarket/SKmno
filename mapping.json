@@ -17,7 +17,7 @@
       "on_value": "new"
     },
     "join_type__port": {
-      "x": 80,
+      "x": 90,
       "y": 755,
       "size": 12,
       "page": 1,
