@@ -26,6 +26,16 @@
         "join_type"
       ],
       "on_value": "port"
+    },
+    "plan_name": {
+      "x": 105,
+      "y": 583,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "plan_name"
+      ]
     }
   }
 }
