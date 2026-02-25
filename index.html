@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SK 외국인 특화요금제</title>
+<style>
+:root{--bg:#0c1522;--card:#fff;--ink:#0f172a;--muted:#6b7280;--accent:#06b6d4;--danger:#ef4444;--line:#e5e7eb;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans KR",Arial,sans-serif}
+header{position:sticky;top:0;z-index:5;background:rgba(12,21,34,.92);backdrop-filter:blur(6px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 16px}
+.mainwrap{max-width:1100px;margin:0 auto;padding:12px 16px 96px}
+.top{display:grid;grid-template-columns:240px 1fr 260px;gap:10px;align-items:center}
+.brand-left img{height:42px;display:block;max-width:180px;object-fit:contain}
+.um-left img{height:44px;display:block;max-width:220px;object-fit:contain}
+.brand-center{display:flex;align-items:center;justify-content:center;gap:14px;min-height:44px}
+.carrier-logo{height:44px;max-width:220px;object-fit:contain;display:block}
+.brand-text{display:flex;align-items:center;gap:12px}
+.title{font-weight:800;font-size:18px;letter-spacing:.2px;text-align:left}
+.badge{padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);font-size:12px;font-weight:800;white-space:nowrap}
+.langs{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.chip{
+  width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;
+  padding:0;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.26);
+  background:transparent;
+  color:rgba(255,255,255,.88);
+  font-size:12px;font-weight:900;
+  cursor:pointer;user-select:none;
+}
+.chip:hover{border-color:rgba(255,255,255,.42)}
+.chip.active{background:rgba(6,182,212,.14);border-color:rgba(6,182,212,.95);color:#06b6d4}
+main{padding:18px 0 88px}
+.card{background:var(--card);border-radius:16px;padding:16px 16px 18px;margin:0 0 14px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+h3{margin:0 0 10px;font-size:15px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px 14px}
+label{display:block;font-weight:800;margin:6px 0 6px}
+.req:after{content:" *";color:var(--danger)}
+input,select,textarea{width:100%;padding:12px 12px;border:1px solid var(--line);border-radius:12px;font:inherit}
+/* 강조: 월 납부요금(요청 반영) */
+#final_monthly_fee{font-weight:900;font-size:18px;color:var(--danger);}
+input[readonly]{background:#f8fafc}
+.seg{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+input[type="radio"],input[type="checkbox"]{width:16px;height:16px;margin:0;accent-color:var(--accent)}
+label.radio{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--line);background:#f8fafc;border-radius:999px;cursor:pointer}
+label.radio:hover{border-color:#cbd5e1}
+label.radio:has(input:checked){border-color:rgba(6,182,212,.55);background:rgba(6,182,212,.10)}
+.note-red{color:var(--danger);font-weight:800;font-size:13px;margin-top:8px}
+.muted{color:var(--muted);font-size:12px;margin-top:6px}
+.fixbar{position:fixed;left:0;right:0;bottom:0;background:rgba(12,21,34,.95);border-top:1px solid rgba(255,255,255,.08)}
+.fixbar .wrap{display:flex;gap:10px;justify-content:flex-end}
+.btn{border:0;border-radius:12px;padding:12px 14px;font-weight:900;cursor:pointer}
+.btn.primary{background:var(--accent);color:#05202a}
+.btn.outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.24)}
+@media (max-width:820px){
+  .top{display:grid;grid-template-columns:240px 1fr 260px;gap:10px;align-items:center}
+  .langs{justify-content:flex-start}
+}
+@media (max-width:720px){
+  .row{grid-template-columns:1fr}
+}
+@media (max-width:860px){.top{grid-template-columns:160px 1fr 190px}.um-left img{height:36px}.carrier-logo{height:36px}.title{font-size:16px}.badge{padding:5px 10px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="um-left"><img id="usimMarketLogo" src="usimmarket.png" alt="usim market"/>
+<script>
+(function () {
+  const img = document.getElementById('usimMarketLogo');
+  const candidates = ['usimmarket.png','/usimmarket.png','USIMMARKET.png','/USIMMARKET.png'];
+  let idx = 0;
+  img.addEventListener('error', () => {
+    idx += 1;
+    if (idx < candidates.length) img.src = candidates[idx];
+  });
+})();
+</script></div>
+
+      <div class="brand-center">
+        <img class="carrier-logo" src="BI_T.png" alt="freeT"/>
+        <div class="brand-text">
+          <div class="title" data-i18n="title">SK 외국인 특화요금제</div>
+          <div class="badge" data-i18n="dealer_only">판매점 전용</div>
+        </div>
+      </div>
+
+      <div class="langs" id="langBar">
+        <div class="chip active" data-lang="ko">KO</div>
+        <div class="chip" data-lang="en">EN</div>
+        <div class="chip" data-lang="vi">VI</div>
+        <div class="chip" data-lang="th">TH</div>
+        <div class="chip" data-lang="kh">KH</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="mainwrap">
+<form id="f">
+  <section class="card" id="plan-card">
+    <h3 data-i18n="sec_plan">요금제 / 가입유형</h3>
+    <div class="row">
+      <div>
+        
+      <div>
+        <label class="req" data-i18n="join_type">가입유형</label>
+        <div class="seg">
+          <label class="radio"><input type="radio" name="join_type" value="new" checked><span data-i18n="new">신규</span></label>
+          <label class="radio"><input type="radio" name="join_type" value="port"><span data-i18n="port">번호이동</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:8px">
+      <div style="grid-column:1 / -1">
+        <label class="req" data-i18n="plan_select">상세 요금제 선택</label>
+        <select id="plan_select"></select>
+
+        <!-- 출력/매핑용 -->
+        <input type="hidden" id="plan_code" name="plan_code" value="">
+        <input type="hidden" id="plan_name" name="plan_name" value="">
+        <input type="hidden" id="carrier" name="carrier" value="SKT">
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:8px">
+      <div>
+        <label class="req" data-i18n="base_fee">월 정액요금</label>
+        <input id="base_monthly_fee" name="base_monthly_fee" type="text" readonly>
+      </div>
+      <div>
+        <label class="req" data-i18n="disc_fee">선택약정 할인</label>
+        <input id="plan_disc" name="plan_disc" type="text" readonly>
+      </div>
+      <div>
+        <label class="req" data-i18n="final_fee">월 납부요금</label>
+        <input id="final_monthly_fee" name="final_monthly_fee" type="text" readonly>
+      </div>
+    </div>
+
+    <!-- 2페이지 항목: 휴대폰 월 할부금(A) = 빈칸 고정 -->
+    <input type="hidden" id="installment_a" name="installment_a" value="">
+    <input type="hidden" id="total_monthly_fee" name="total_monthly_fee" value="">
+  </section>
+
+  <section class="card">
+    <h3 data-i18n="sec_customer">고객 정보(가입자)</h3>
+    <div class="row">
+      <div>
+        <label class="req" data-i18n="name">가입자명</label>
+        <input id="subscriber_name" name="subscriber_name" type="text" placeholder="※대문자로작성/띄워쓰기 확인/오타 유의 해주시길바랍니다.">
+      
+        <input type="hidden" id="subscriber_name_print" name="subscriber_name_print" value="">
+</div>
+      <div>
+        <label class="req" data-i18n="birth">생년월일</label>
+        <input id="birth" name="birth" type="text" maxlength="8" placeholder="YYYYMMDD 또는 YYMMDD">
+      </div>
+    </div>
+    <div class="row" style="margin-top:8px">
+      <div style="grid-column:1 / -1">
+        <label class="req" data-i18n="id_doc">신분증 선택</label>
+        <div class="seg">
+          <label class="radio"><input type="radio" name="id_doc_type" value="arc" checked><span data-i18n="id_arc">외국인등록증</span></label>
+          <label class="radio"><input type="radio" name="id_doc_type" value="passport"><span data-i18n="id_passport">여권</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div id="passport_fields" style="display:none;margin-top:8px">
+      <div class="row">
+        <div>
+          <label class="req" data-i18n="passport_no">여권번호</label>
+          <input id="passport_no" name="passport_no" type="text">
+        </div>
+        <div>
+          <label class="req" data-i18n="nationality">국적</label>
+          <input id="nationality" name="nationality" type="text" placeholder="예: 중국">
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <div>
+          <label class="req" data-i18n="passport_birth">생년월일</label>
+          <input id="passport_birth" name="passport_birth" type="text" maxlength="10" placeholder="예: 2001.02.12">
+        </div>
+        <div>
+          <label class="req" data-i18n="stay_status">체류자격</label>
+          <input id="stay_status" name="stay_status" type="text" placeholder="예: E-9, E-7, D-2, D-4">
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <div>
+          <label class="req" data-i18n="stay_expiry">체류기간 만료일</label>
+          <input id="stay_expiry" name="stay_expiry" type="text" maxlength="10" placeholder="예: 2027.05.21">
+        </div>
+        <div></div>
+      </div>
+      <input type="hidden" id="passport_info_print" name="passport_info_print" value="">
+    </div>
+
+    <div class="row">
+      
+      <div>
+        <label class="req" data-i18n="addr">주소(국내)</label>
+
+        <div class="row" style="gap:8px; align-items:center;">
+          <input id="zip" name="zip" type="text" data-i18n-placeholder="zip_ph" placeholder="우편번호" readonly style="max-width:120px;">
+          <button type="button" id="btnAddrSearch" class="btn small" data-i18n="addr_search">주소검색</button>
+        </div>
+
+        <input id="addr_road" name="addr_road" type="text" data-i18n-placeholder="addr_road_ph" placeholder="도로명주소" readonly>
+<input id="addr_detail" name="addr_detail" type="text" data-i18n-placeholder="addr_detail_ph" placeholder="상세주소 (동/호/회사명/층 등)">
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3 data-i18n="sec_line">가입 유형/회선 정보</h3>
+
+    <div class="row">
+      <div id="wish_row" style="grid-column:1 / -1">
+        <label data-i18n="wish4">희망번호(신규 선택시)</label>
+        <input id="wish4" name="wish4" type="text" maxlength="4" placeholder="예: 1234">
+      </div>
+    </div>
+
+    <!-- 출력일자는 화면에 표시하지 않음 (매핑/출력용 hidden) -->
+    <input type="hidden" id="apply_date_year" name="apply_date_year" value="">
+    <input type="hidden" id="apply_date_month" name="apply_date_month" value="">
+    <input type="hidden" id="apply_date_day" name="apply_date_day" value="">
+<div class="row" id="port_row" style="display:none;margin-top:8px">
+      <div>
+        <label class="req" data-i18n="portnum">번호이동할 번호</label>
+        
+        <input id="port_number" name="port_number" type="text" placeholder="01012345678 (숫자만)">
+        <input type="hidden" id="mnp1" name="mnp1" value="">
+        <input type="hidden" id="mnp2" name="mnp2" value="">
+        <input type="hidden" id="mnp3" name="mnp3" value="">
+      </div>
+      <div>
+        <label class="req" data-i18n="prevcarrier">변경전 통신사</label>
+        <select id="prev_carrier" name="prev_carrier">
+          <option value="kt">KT</option>
+          <option value="lgu">LG U+</option>
+          <option value="skt_mvno">SKT 알뜰폰</option>
+          <option value="kt_mvno">KT 알뜰폰</option>
+          <option value="lgu_mvno">LG U+ 알뜰폰</option>
+        </select>
+        <div id="mvno_box" style="display:none;margin-top:10px">
+          <label class="req" data-i18n="mvnoname">알뜰폰 업체명</label>
+          <input id="mvno_name" name="mvno_name" type="text">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3 data-i18n="sec_sim">USIM / eSIM</h3>
+    <div class="row">
+      <div>
+        <label class="req" data-i18n="sim_type">유심 타입</label>
+        <div class="seg">
+          <label class="radio"><input type="radio" name="sim_type" value="usim" checked><span data-i18n="usim">USIM</span></label>
+          <label class="radio"><input type="radio" name="sim_type" value="esim"><span data-i18n="esim">eSIM</span></label>
+        </div>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="row" id="usim_fields" style="margin-top:8px">
+      <div>
+        <label class="req" data-i18n="sim_serial">USIM 일련번호</label>
+        <input id="sim_serial" name="sim_serial" type="text" placeholder="예: 8982...">
+      </div>
+      <div></div>
+    </div>
+
+    <div id="esim_fields" style="display:none;margin-top:8px">
+      <div class="row">
+        <div>
+          <label class="req">IMEI</label>
+          <input id="imei1" name="imei1" type="text" placeholder="15자리 숫자" inputmode="numeric" maxlength="15" pattern="\d{15}">
+        </div>
+        <div>
+          <label>IMEI2</label>
+          <input id="imei2" name="imei2" type="text" placeholder="15자리 숫자" inputmode="numeric" maxlength="15" pattern="\d{15}">
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <div>
+          <label class="req">EID</label>
+          <input id="eid" name="eid" type="text" placeholder="32자리" inputmode="numeric" maxlength="32" pattern="\d{32}">
+        </div>
+        <div></div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <div>
+          <label class="req" data-i18n="esim_model">모델명</label>
+          <input id="esim_model" name="esim_model" type="text" placeholder="예: iPhone 14 Pro">
+        </div>
+        <div></div>
+      </div>
+      <div class="muted" data-i18n="esim_note">(IMEI와 EID 정보는 키패드에서 *#06#을 누르시면 바로 확인이 가능합니다.)</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3 data-i18n="sec_pay">자동이체/결제</h3>
+    <div class="row">
+      <div>
+        <label class="req" data-i18n="pay_method">자동이체 방식</label>
+        <div class="seg">
+          <label class="radio"><input type="radio" name="autopay_method" value="bank" checked><span data-i18n="bank">계좌이체</span></label>
+          <label class="radio"><input type="radio" name="autopay_method" value="card"><span data-i18n="card">신용카드</span></label>
+        </div>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="row" style="margin-top:8px">
+      <div>
+        <label class="req" data-i18n="holder">예금주(카드주)</label>
+        <input id="autopay_holder" name="autopay_holder" type="text" placeholder="※대문자로작성/띄워쓰기 확인/오타 유의 해주시길바랍니다.">
+        
+        <input type="hidden" id="autopay_holder_print" name="autopay_holder_print" value="">
+<div class="note-red" data-i18n="sign_note">※외국인 가입자는 본인명의 계좌만 등록이 가능합니다.</div>
+      </div>
+      <div>
+        <label class="req" data-i18n="pay_birth">생년월일</label>
+        <input id="autopay_birth" name="autopay_birth" type="text" maxlength="8" placeholder="YYYYMMDD 또는 YYMMDD">
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:8px">
+      <div>
+        <label class="req" data-i18n="autopay_org">은행명(카드사명)</label>
+        <input id="autopay_org" name="autopay_org" type="text">
+      </div>
+      <div>
+        <label class="req" data-i18n="autopay_number">계좌번호(카드번호)</label>
+        <input id="autopay_number" name="autopay_number" type="text">
+        <div id="card_fields" style="display:none;margin-top:10px">
+          <label class="req" data-i18n="exp_ym">유효기간(년/월)</label>
+          <div class="row" style="grid-template-columns:1fr 1fr;gap:8px">
+            <input id="card_exp_year" name="card_exp_year" type="text" maxlength="2" placeholder="YY">
+            <input id="card_exp_month" name="card_exp_month" type="text" maxlength="2" placeholder="MM">
+          </div>
+        </div>
+        <input type="hidden" id="autopay_exp" name="autopay_exp" value="">
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3 data-i18n="sec_addon">부가서비스</h3>
+    <div class="seg">
+      <label class="radio"><input type="checkbox" checked disabled><span data-i18n="addon_fixed">데이터 로밍 차단 / 국제전화 발신 차단 / 선택약정 12개월</span></label>
+    </div>
+
+    <div style="margin-top:14px">
+      
+  </section>
+
+  <section class="card" style="display:none">
+    <h3>내부용 필드</h3>
+    <div class="muted">※ 매핑/인쇄 단계에서 사용되는 필드가 포함되어 있습니다.</div>
+  </section>
+</form>
+</main>
+
+<div class="fixbar">
+  <div class="wrap">
+    <button class="btn outline" id="resetBtn" type="button" data-i18n="reset">초기화</button>
+    <button class="btn primary" id="saveBtn" type="button" data-i18n="save_pdf">PDF 저장</button>
+    <button class="btn primary" id="printBtn" type="button" data-i18n="print">인쇄</button>
+  </div>
+</div>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+const I18N = {"ko": {"id_doc": "신분증 선택", "id_arc": "외국인등록증", "id_passport": "여권", "passport_no": "여권번호", "nationality": "국적", "passport_birth": "생년월일", "stay_status": "체류자격", "stay_expiry": "체류기간 만료일", "esim_model": "모델명", "esim_note": "(IMEI와 EID 정보는 키패드에서 *#06#을 누르시면 바로 확인이 가능합니다.)", "title": "SK 외국인 특화요금제 가입신청서", "sec_plan": "요금제 / 가입유형", "plan_group": "요금제 그룹", "freet_sk": "프리티SK요금제", "freet_kt": "프리티KT요금제", "join_type": "가입유형", "new": "신규", "port": "번호이동", "plan_select": "상세 요금제 선택", "base_fee": "월 정액요금", "disc_fee": "선택약정 할인", "final_fee": "월 납부요금", "sec_customer": "고객 정보(가입자)", "name": "가입자명", "birth": "생년월일", "customer_type": "고객구분", "native": "내국인", "foreigner": "외국인", "addr": "주소(국내)", "sec_line": "가입 유형/회선 정보", "wish4": "희망번호(신규 선택시)", "portnum": "번호이동할 번호", "postpaid": "후불", "prepaid": "선불", "prevcarrier": "변경전 통신사", "mvnoname": "알뜰폰 업체명", "sec_sim": "USIM / eSIM", "sim_type": "유심 타입", "usim": "USIM", "esim": "eSIM", "sim_serial": "USIM 일련번호", "sec_pay": "자동이체/결제", "pay_method": "자동이체 방식", "bank": "계좌이체", "card": "신용카드", "holder": "예금주(카드주)", "pay_birth": "생년월일", "autopay_org": "은행명(카드사명)", "autopay_number": "계좌번호(카드번호)", "exp_ym": "유효기간(년/월)", "sec_addon": "부가서비스", "addon_fixed": "데이터 로밍 차단 / 국제전화 발신 차단 / 선택약정 12개월", "seller": "판매직원(상담사) 성명", "sign_note": "※외국인 가입자는 본인명의 계좌만 등록이 가능합니다.", "reset": "초기화", "save_pdf": "PDF 저장", "print": "인쇄", "apply_date": "출력일자", "dealer_only": "판매점 전용", "addr_search": "주소검색", "zip_ph": "우편번호", "addr_road_ph": "도로명주소", "addr_jibun_ph": "지번주소", "addr_detail_ph": "상세주소 (동/호/회사명/층 등)", "addon_12m": "선택약정 12개월"}, "en": {"id_doc": "ID document", "id_arc": "Alien Registration Card", "id_passport": "Passport", "passport_no": "Passport No.", "nationality": "Nationality", "passport_birth": "Date of birth", "stay_status": "Visa/Status", "stay_expiry": "Stay expiry date", "esim_model": "Model name", "esim_note": "(You can check IMEI and EID by dialing *#06#.)", "title": "SK Foreigner Specialized Plan Application", "sec_plan": "Plan / Subscription Type", "plan_group": "Plan group", "freet_sk": "PRETTY SK plans", "freet_kt": "PRETTY KT plans", "join_type": "Subscription type", "new": "New", "port": "Port-in", "plan_select": "Select plan", "base_fee": "Base monthly fee", "disc_fee": "Select contract discount", "final_fee": "Monthly payment", "sec_customer": "Customer info", "name": "Name", "birth": "Date of birth", "customer_type": "Customer type", "native": "Korean", "foreigner": "Foreigner", "addr": "Address (KR)", "sec_line": "Line info", "wish4": "Desired last 4 digits (new)", "portnum": "Port-in number", "postpaid": "Postpaid", "prepaid": "Prepaid", "prevcarrier": "Previous carrier", "mvnoname": "MVNO name", "sec_sim": "USIM / eSIM", "sim_type": "SIM type", "usim": "USIM", "esim": "eSIM", "sim_serial": "USIM serial", "sec_pay": "Auto-pay", "pay_method": "Auto-pay method", "bank": "Bank transfer", "card": "Credit card", "holder": "Account/Card holder", "pay_birth": "DOB", "autopay_org": "Bank/Card issuer", "autopay_number": "Account/Card number", "exp_ym": "Expiry (YY/MM)", "sec_addon": "Add-on", "addon_fixed": "Block roaming data / international calls / 12-month Select Contract", "seller": "Sales staff name", "sign_note": "Signature must be handwritten by the applicant.", "reset": "Reset", "save_pdf": "Save PDF", "print": "Print", "apply_date": "Print date", "dealer_only": "Dealer Only", "addr_search": "Search address", "zip_ph": "ZIP code", "addr_road_ph": "Road address", "addr_jibun_ph": "Jibun address", "addr_detail_ph": "Detail (apt/floor/company etc.)", "addon_12m": "12-month Select Contract"}, "vi": {"id_doc": "Giấy tờ tùy thân", "id_arc": "Thẻ đăng ký người nước ngoài", "id_passport": "Hộ chiếu", "passport_no": "Số hộ chiếu", "nationality": "Quốc tịch", "passport_birth": "Ngày sinh", "stay_status": "Tư cách lưu trú", "stay_expiry": "Ngày hết hạn lưu trú", "esim_model": "Tên mẫu máy", "esim_note": "(Bạn có thể kiểm tra IMEI và EID bằng cách bấm *#06#.)", "title": "Đơn đăng ký gói SK dành cho người nước ngoài", "dealer_only": "Chỉ đại lý", "sec_plan": "Gói cước / Loại đăng ký", "plan_group": "Nhóm gói cước", "freet_sk": "Gói PRETTY SK", "freet_kt": "Gói PRETTY KT", "join_type": "Loại đăng ký", "new": "Đăng ký mới", "port": "Chuyển mạng giữ số", "plan_select": "Chọn gói cước chi tiết", "base_fee": "Phí gói theo tháng", "disc_fee": "Giảm giá hợp đồng lựa chọn", "final_fee": "Số tiền thanh toán/tháng", "sec_customer": "Thông tin khách hàng (người đăng ký)", "name": "Họ tên", "birth": "Ngày sinh", "customer_type": "Phân loại", "native": "Người Hàn Quốc", "foreigner": "Người nước ngoài", "addr": "Địa chỉ (Hàn Quốc)", "sec_line": "Thông tin thuê bao", "wish4": "Số mong muốn 4 số cuối (đăng ký mới)", "portnum": "Số chuyển mạng", "postpaid": "Trả sau", "prepaid": "Trả trước", "prevcarrier": "Nhà mạng trước", "mvnoname": "Tên MVNO", "sec_sim": "USIM / eSIM", "sim_type": "Loại SIM", "usim": "USIM", "esim": "eSIM", "sim_serial": "Số serial USIM", "sec_pay": "Thanh toán tự động", "pay_method": "Phương thức thanh toán tự động", "bank": "Chuyển khoản ngân hàng", "card": "Thẻ tín dụng", "holder": "Chủ tài khoản/Chủ thẻ", "pay_birth": "Ngày sinh", "autopay_org": "Ngân hàng/Tổ chức phát hành thẻ", "autopay_number": "Số tài khoản/Số thẻ", "exp_ym": "Hạn sử dụng (YY/MM)", "sec_addon": "Dịch vụ bổ sung", "addon_fixed": "Chặn dữ liệu roaming / chặn gọi quốc tế / Hợp đồng lựa chọn 12 tháng", "seller": "Tên nhân viên tư vấn", "sign_note": "※ Người nước ngoài chỉ có thể đăng ký tài khoản đứng tên chính chủ.", "reset": "Đặt lại", "save_pdf": "Lưu PDF", "print": "In", "apply_date": "Ngày in", "addr_search": "Tìm địa chỉ", "zip_ph": "Mã bưu chính", "addr_road_ph": "Địa chỉ đường", "addr_jibun_ph": "Địa chỉ Jibun", "addr_detail_ph": "Địa chỉ chi tiết (căn hộ/tầng/công ty...)", "addon_12m": "Hợp đồng lựa chọn 12 tháng"}, "th": {"id_doc": "เอกสารประจำตัว", "id_arc": "บัตร ARC", "id_passport": "หนังสือเดินทาง", "passport_no": "เลขพาสปอร์ต", "nationality": "สัญชาติ", "passport_birth": "วันเกิด", "stay_status": "สถานะพำนัก", "stay_expiry": "วันหมดอายุพำนัก", "esim_model": "รุ่นเครื่อง", "esim_note": "(ตรวจสอบ IMEI และ EID ได้โดยกด *#06#.)", "title": "ใบสมัครแพ็กเกจ SK สำหรับชาวต่างชาติ", "dealer_only": "สำหรับตัวแทนเท่านั้น", "sec_plan": "แพ็กเกจ/ประเภทการสมัคร", "plan_group": "กลุ่มแพ็กเกจ", "freet_sk": "แพ็กเกจ PRETTY SK", "freet_kt": "แพ็กเกจ PRETTY KT", "join_type": "ประเภทการสมัคร", "new": "สมัครใหม่", "port": "ย้ายค่ายเบอร์เดิม", "plan_select": "เลือกแพ็กเกจ", "base_fee": "ค่าบริการรายเดือน", "disc_fee": "ส่วนลดสัญญาเลือก", "final_fee": "ยอดชำระรายเดือน", "sec_customer": "ข้อมูลลูกค้า (ผู้สมัคร)", "name": "ชื่อ", "birth": "วันเกิด", "customer_type": "ประเภทลูกค้า", "native": "คนเกาหลี", "foreigner": "ชาวต่างชาติ", "addr": "ที่อยู่ (เกาหลี)", "sec_line": "ข้อมูลเลขหมาย", "wish4": "เลขที่ต้องการ 4 หลัก (สมัครใหม่)", "portnum": "หมายเลขที่จะย้ายค่าย", "postpaid": "รายเดือน", "prepaid": "เติมเงิน", "prevcarrier": "เครือข่ายเดิม", "mvnoname": "ชื่อ MVNO", "sec_sim": "USIM / eSIM", "sim_type": "ประเภทซิม", "usim": "USIM", "esim": "eSIM", "sim_serial": "หมายเลข USIM", "sec_pay": "ชำระเงินอัตโนมัติ", "pay_method": "วิธีชำระเงินอัตโนมัติ", "bank": "โอนผ่านบัญชีธนาคาร", "card": "บัตรเครดิต", "holder": "ชื่อเจ้าของบัญชี/บัตร", "pay_birth": "วันเกิด", "autopay_org": "ธนาคาร/ผู้ออกบัตร", "autopay_number": "เลขบัญชี/เลขบัตร", "exp_ym": "วันหมดอายุ (YY/MM)", "sec_addon": "บริการเสริม", "addon_fixed": "บล็อกดาต้าโรมมิ่ง / บล็อกโทรต่างประเทศ / สัญญาเลือก 12 เดือน", "seller": "ชื่อพนักงานที่ปรึกษา", "sign_note": "※ ผู้สมัครชาวต่างชาติสามารถลงทะเบียนได้เฉพาะบัญชีที่เป็นชื่อของตนเองเท่านั้น", "reset": "รีเซ็ต", "save_pdf": "บันทึก PDF", "print": "พิมพ์", "apply_date": "วันที่พิมพ์", "addr_search": "ค้นหาที่อยู่", "zip_ph": "รหัสไปรษณีย์", "addr_road_ph": "ที่อยู่ถนน", "addr_jibun_ph": "ที่อยู่แบบ Jibun", "addr_detail_ph": "รายละเอียดที่อยู่ (ห้อง/ชั้น/บริษัท ฯลฯ)", "addon_12m": "สัญญาเลือก 12 เดือน"}, "kh": {"id_doc": "ឯកសារអត្តសញ្ញាណ", "id_arc": "ARC", "id_passport": "លិខិតឆ្លងដែន", "passport_no": "លេខលិខិតឆ្លងដែន", "nationality": "សញ្ជាតិ", "passport_birth": "ថ្ងៃខែឆ្នាំកំណើត", "stay_status": "ស្ថានភាពស្នាក់នៅ", "stay_expiry": "ថ្ងៃផុតកំណត់ស្នាក់នៅ", "esim_model": "ម៉ូដែល", "esim_note": "(អាចពិនិត្យ IMEI និង EID ដោយចុច *#06#.)", "title": "ពាក្យស្នើសុំកញ្ចប់ SK សម្រាប់ជនបរទេស", "dealer_only": "សម្រាប់ភ្នាក់ងារតែបុណ្ណោះ", "sec_plan": "គម្រោង/ប្រភេទការចុះឈ្មោះ", "plan_group": "ក្រុមគម្រោង", "freet_sk": "គម្រោង PRETTY SK", "freet_kt": "គម្រោង PRETTY KT", "join_type": "ប្រភេទការចុះឈ្មោះ", "new": "ចុះឈ្មោះថ្មី", "port": "ផ្ទេរលេខ (រក្សាលេខដើម)", "plan_select": "ជ្រើសរើសគម្រោងលម្អិត", "base_fee": "ថ្លៃប្រចាំខែ", "disc_fee": "បញ្ចុះតម្លៃកិច្ចសន្យាជ្រើសរើស", "final_fee": "ចំនួនទឹកប្រាក់ត្រូវបង់/ខែ", "sec_customer": "ព័ត៌មានអតិថិជន (អ្នកដាក់ពាក្យ)", "name": "ឈ្មោះ", "birth": "ថ្ងៃខែឆ្នាំកំណើត", "customer_type": "ប្រភេទអតិថិជន", "native": "ជនជាតិកូរ៉េ", "foreigner": "ជនបរទេស", "addr": "អាសយដ្ឋាន (កូរ៉េ)", "sec_line": "ព័ត៌មានលេខទូរស័ព្ទ", "wish4": "លេខចង់បាន 4 ខ្ទង់ចុងក្រោយ (ចុះឈ្មោះថ្មី)", "portnum": "លេខដែលត្រូវផ្ទេរ", "postpaid": "បង់ក្រោយ", "prepaid": "បង់មុន", "prevcarrier": "បណ្ដាញមុន", "mvnoname": "ឈ្មោះ MVNO", "sec_sim": "USIM / eSIM", "sim_type": "ប្រភេទ SIM", "usim": "USIM", "esim": "eSIM", "sim_serial": "លេខស៊េរី USIM", "sec_pay": "បង់ប្រាក់ស្វ័យប្រវត្តិ", "pay_method": "វិធីបង់ប្រាក់ស្វ័យប្រវត្តិ", "bank": "ផ្ទេរប្រាក់តាមធនាគារ", "card": "កាតឥណទាន", "holder": "ម្ចាស់គណនី/ម្ចាស់កាត", "pay_birth": "ថ្ងៃខែឆ្នាំកំណើត", "autopay_org": "ធនាគារ/ក្រុមហ៊ុនប័ណ្ណ", "autopay_number": "លេខគណនី/លេខកាត", "exp_ym": "ថ្ងៃផុតកំណត់ (YY/MM)", "sec_addon": "សេវាបន្ថែម", "addon_fixed": "បិទទិន្នន័យរ៉ូមីង / បិទការហៅអន្តរជាតិ / កិច្ចសន្យាជ្រើសរើស 12 ខែ", "seller": "ឈ្មោះអ្នកពិគ្រោះ", "sign_note": "※ អ្នកដាក់ពាក្យជនបរទេសអាចចុះឈ្មោះបានតែគណនីដែលមានឈ្មោះផ្ទាល់ខ្លួនប៉ុណ្ណោះ", "reset": "កំណត់ឡើងវិញ", "save_pdf": "រក្សាទុក PDF", "print": "បោះពុម្ព", "apply_date": "កាលបរិច្ឆេទបោះពុម្ព", "addr_search": "ស្វែងរកអាសយដ្ឋាន", "zip_ph": "លេខកូដប្រៃសណីយ៍", "addr_road_ph": "អាសយដ្ឋានផ្លូវ", "addr_jibun_ph": "អាសយដ្ឋាន Jibun", "addr_detail_ph": "អាសយដ្ឋានលម្អិត (បន្ទប់/ជាន់/ក្រុមហ៊ុន...)", "addon_12m": "កិច្ចសន្យាជ្រើសរើស 12 ខែ"}};
+let currentLang = "ko";
+function t(key){
+  const ko = I18N.ko || {};
+  const langPack = I18N[currentLang] || {};
+  return langPack[key] || ko[key] || key;
+}
+function applyLang(){
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{ el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("#langBar .chip").forEach(c=>c.classList.toggle("active", c.dataset.lang===currentLang));
+}
+document.getElementById("langBar").addEventListener("click", (e)=>{
+  const chip = e.target.closest(".chip"); if(!chip) return;
+  currentLang = chip.dataset.lang;
+  applyLang();
+});
+
+const PLANS = [
+  { code: "5gx_regular", name: "5GX 레귤러", base: 69000, disc: 17250, pay: 31750 },
+  { code: "basic_plus", name: "베이직플러스", base: 59000, disc: 14750, pay: 24250 },
+  { code: "5g_basic", name: "5G 베이직", base: 49000, disc: 12250, pay: 20750 },
+  { code: "5g_compact", name: "5G 컴팩트", base: 39000, disc: 9750, pay: 16250 }
+];
+
+function fmt(n){ 
+  try{ return Number(n).toLocaleString("ko-KR"); }catch(e){ return n; }
+}
+function populatePlans() {
+  const sel = document.getElementById("plan_select");
+  sel.innerHTML = "";
+  PLANS.forEach((p)=>{
+    const opt = document.createElement("option");
+    opt.value = p.code;
+    opt.textContent = p.name;
+    sel.appendChild(opt);
+  });
+  if (PLANS.length) {
+    sel.value = PLANS[0].code;
+    applyPlan();
+  }
+}
+
+function applyPlan() {
+  const code = document.getElementById("plan_select").value;
+  const p = (PLANS || []).find(x=>x.code===code);
+  if(!p) return;
+  document.getElementById("plan_code").value = p.code;
+  document.getElementById("plan_name").value = p.name;
+  document.getElementById("base_monthly_fee").value = fmt(p.base);
+  document.getElementById("plan_disc").value = fmt(p.disc);
+  document.getElementById("final_monthly_fee").value = fmt(p.pay);
+  document.getElementById("total_monthly_fee").value = fmt(p.pay); // 필요 시 2페이지 합계에 재사용
+}
+
+function syncJoinType() {
+  const jt = document.querySelector('input[name="join_type"]:checked')?.value || "new";
+  const portRow = document.getElementById("port_row");
+  const wishRow = document.getElementById("wish_row");
+
+  const prevCarrier = document.getElementById("prev_carrier");
+  const portNumber = document.getElementById("port_number");
+  const mvnoName = document.getElementById("mvno_name");
+  const mvnoBox = document.getElementById("mvno_box");
+  const mnpPayRadios = Array.from(document.querySelectorAll('input[name="mnp_pay_type"]'));
+
+  // 신규: 희망번호만 / 번호이동: 번호이동 영역만
+  portRow.style.display = (jt === "port") ? "" : "none";
+  wishRow.style.display = (jt === "new") ? "" : "none";
+
+  if (jt === "port") {
+    // clear new-only field
+    document.getElementById("wish4").value = "";
+
+    // enable port-only inputs so FormData includes them
+    prevCarrier.disabled = false;
+    portNumber.disabled = false;
+    mnpPayRadios.forEach(r => (r.disabled = false));
+
+    // if nothing is selected (edge case), default to 후불
+    if (!mnpPayRadios.some(r => r.checked)) {
+      const post = mnpPayRadios.find(r => r.value === "postpaid");
+      if (post) post.checked = true;
+    }
+
+    // show/hide MVNO name based on carrier
+    syncPrevCarrier();
+  } else {
+    // clear port-only fields AND disable them (disabled fields are excluded from FormData)
+    portNumber.value = "";
+    mvnoName.value = "";
+    mvnoBox.style.display = "none";
+
+    // keep UI defaults, but make sure they won't be sent/printed when 신규
+    prevCarrier.disabled = true;
+    portNumber.disabled = true;
+    mnpPayRadios.forEach(r => (r.disabled = true));
+  }
+}
+
+function syncPrevCarrier() {
+  const v = document.getElementById("prev_carrier").value;
+  const box = document.getElementById("mvno_box");
+  const isMvno = /_mvno$/.test(v);
+  box.style.display = isMvno ? "" : "none";
+  if(!isMvno) document.getElementById("mvno_name").value="";
+}
+function syncSim() {
+  const v = document.querySelector('input[name="sim_type"]:checked')?.value || "usim";
+  document.getElementById("usim_fields").style.display = (v==="usim") ? "" : "none";
+  document.getElementById("esim_fields").style.display = (v==="esim") ? "" : "none";
+  if(v==="usim") {
+    document.getElementById("imei1").value=""; document.getElementById("imei2").value=""; document.getElementById("eid").value="";
+  } else {
+    document.getElementById("sim_serial").value="";
+  }
+}
+
+function syncAutopay() {
+  const m = document.querySelector('input[name="autopay_method"]:checked')?.value || "bank";
+  const card = document.getElementById("card_fields");
+  card.style.display = (m==="card") ? "" : "none";
+  if(m!=="card") {
+    document.getElementById("card_exp_year").value=""; 
+    document.getElementById("card_exp_month").value="";
+    document.getElementById("autopay_exp").value="";
+  } else {
+    // update autopay_exp
+    const yy = (document.getElementById("card_exp_year").value||"").padStart(2,"0");
+    const mm = (document.getElementById("card_exp_month").value||"").padStart(2,"0");
+    if(yy && mm) document.getElementById("autopay_exp").value = yy + "/" + mm;
+  }
+}
+
+document.getElementById("plan_select").addEventListener("change", applyPlan);
+document.querySelectorAll('input[name="join_type"]').forEach(el=>el.addEventListener("change", syncJoinType));
+document.getElementById("prev_carrier").addEventListener("change", syncPrevCarrier);
+document.querySelectorAll('input[name="sim_type"]').forEach(el=>el.addEventListener("change", syncSim));
+document.querySelectorAll('input[name="autopay_method"]').forEach(el=>el.addEventListener("change", syncAutopay));
+document.getElementById("card_exp_year").addEventListener("input", syncAutopay);
+document.getElementById("card_exp_month").addEventListener("input", syncAutopay);
+
+
+// ---- Subscriber name -> Auto-pay holder sync + print wrapping (25 chars) ----
+const subscriberNameEl = document.getElementById("subscriber_name");
+const holderEl = document.getElementById("autopay_holder");
+const subscriberPrintEl = document.getElementById("subscriber_name_print");
+const holderPrintEl = document.getElementById("autopay_holder_print");
+
+// Insert newline every 25 characters for PDF printing (hidden fields)
+function wrapEvery25(str){
+  const s = (str || "").toString();
+  if(s.length <= 25) return s;
+  let out = "";
+  for(let i=0;i<s.length;i++){
+    out += s[i];
+    if((i+1) % 25 === 0 && i !== s.length - 1) out += "\n";
+  }
+  return out;
+}
+
+function updatePrintNames(){
+  if(subscriberPrintEl) subscriberPrintEl.value = wrapEvery25(subscriberNameEl ? subscriberNameEl.value.trim() : "");
+  if(holderPrintEl) holderPrintEl.value = wrapEvery25(holderEl ? holderEl.value.trim() : "");
+}
+
+// If the user manually edits the holder, don't overwrite afterwards.
+let holderTouched = false;
+if(holderEl){
+  holderEl.addEventListener("input", ()=>{
+    holderTouched = true;
+    updatePrintNames();
+  });
+}
+
+function syncHolderFromSubscriber(){
+  if(!subscriberNameEl || !holderEl) return;
+  const nameVal = subscriberNameEl.value || "";
+  // freet-style: auto-fill holder from subscriber unless user already edited holder
+  if(!holderTouched || !holderEl.value){
+    holderEl.value = nameVal;
+  }
+  updatePrintNames();
+}
+
+// Compatibility shim: some parts of the form call this name.
+// Keep behavior identical to freeT: sync holder from subscriber.
+function syncHolderIfForeigner(){
+  try{ syncHolderFromSubscriber(); }catch(e){}
+}
+
+
+if(subscriberNameEl){
+  subscriberNameEl.addEventListener("input", syncHolderFromSubscriber);
+}
+// ---- end ----
+
+
+
+document.getElementById("resetBtn").addEventListener("click", ()=>{
+  document.getElementById("f").reset();
+  populatePlans();
+  syncJoinType();
+  syncPrevCarrier();
+  syncSim();
+  syncPassport();
+  syncAutopay();
+  syncHolderIfForeigner();
+  updatePrintNames();
+  const d = new Date();
+  document.getElementById("apply_date_year").value = String(d.getFullYear());
+  document.getElementById("apply_date_month").value = String(d.getMonth()+1).padStart(2,"0");
+  document.getElementById("apply_date_day").value = String(d.getDate()).padStart(2,"0");
+});
+
+async function buildPdfBlob(action){
+  // ensure dates / derived fields are up-to-date right before generating
+  const d = new Date();
+  const applyDateEl = document.getElementById("apply_date");
+  if(applyDateEl) applyDateEl.value = d.toISOString().slice(0,10);
+  // keep print-wrapping fields synced
+  try{ syncHolderIfForeigner(); }catch(e){}
+  try{ updatePrintNames(); }catch(e){}
+
+  const form = document.getElementById("f");
+  const fd = new FormData(form);
+  const data = {};
+  for(const [k,v] of fd.entries()){
+    data[k] = v;
+  }
+  // include unchecked checkboxes as empty string (FormData omits them)
+  document.querySelectorAll('input[type="checkbox"][name]').forEach(el=>{
+    data[el.name] = el.checked ? (el.value || "1") : "";
+  });
+
+  const res = await fetch("/.netlify/functions/generate", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ action, data })
+  });
+
+  if(!res.ok){
+    const t = await res.text().catch(()=> "");
+    throw new Error(t || ("HTTP " + res.status));
+  }
+  return await res.blob();
+}
+
+function downloadBlob(blob, filename){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1500);
+}
+
+function printBlob(blob, preOpenedWindow){
+  const url = URL.createObjectURL(blob);
+
+  // If we already opened a window synchronously (recommended), use it.
+  const w = preOpenedWindow || window.open("about:blank", "_blank");
+  if(!w){
+    alert("팝업이 차단되어 PDF를 새 창으로 열 수 없습니다. 브라우저에서 팝업 차단을 해제한 뒤 다시 시도해주세요.");
+    URL.revokeObjectURL(url);
+    return;
+  }
+  w.location.href = url;
+  w.focus();
+
+  // Revoke later to avoid breaking the viewer before user prints/saves.
+  setTimeout(()=>{ try{ URL.revokeObjectURL(url); }catch(e){} }, 5 * 60 * 1000);
+}
+
+async function handleSave(){
+  const btn = document.getElementById("saveBtn");
+  const btn2 = document.getElementById("printBtn");
+  try{
+    btn && (btn.disabled = true);
+    btn2 && (btn2.disabled = true);
+    const blob = await buildPdfBlob("download");
+    downloadBlob(blob, "freeT_application.pdf");
+  }catch(err){
+    alert("PDF 저장 실패: " + (err && err.message ? err.message : err));
+    console.error(err);
+  }finally{
+    btn && (btn.disabled = false);
+    btn2 && (btn2.disabled = false);
+  }
+}
+
+async function handlePrint(){
+  const btn = document.getElementById("saveBtn");
+  const btn2 = document.getElementById("printBtn");
+
+  // Open a blank tab/window immediately (so popup blockers are less likely to block it).
+  const w = window.open("about:blank", "_blank");
+  if(!w){
+    alert("팝업이 차단되어 PDF를 새 창으로 열 수 없습니다. 브라우저에서 팝업 차단을 해제한 뒤 다시 시도해주세요.");
+    return;
+  }
+
+  try{
+    btn && (btn.disabled = true);
+    btn2 && (btn2.disabled = true);
+
+    const blob = await buildPdfBlob("print");
+
+    // Show PDF in new tab (The ONE 방식: 사용자가 그 창에서 인쇄 버튼을 누르게 됨)
+    printBlob(blob, w);
+
+  }catch(err){
+    try{ w.close(); }catch(e){}
+    alert("인쇄 실패: " + (err && err.message ? err.message : err));
+    console.error(err);
+  }finally{
+    btn && (btn.disabled = false);
+    btn2 && (btn2.disabled = false);
+  }
+}
+
+
+function clearWithin(el){
+  if(!el) return;
+  el.querySelectorAll('input,select,textarea').forEach(i=>{
+    if(i.type==="radio"||i.type==="checkbox"){
+      if(!i.disabled) i.checked = false;
+    }else{
+      i.value = "";
+    }
+  });
+}
+
+function syncPassport(){
+  const type = document.querySelector('input[name="id_doc_type"]:checked')?.value || "arc";
+  const box = document.getElementById("passport_fields");
+  if(type === "passport"){
+    box.style.display = "block";
+  }else{
+    box.style.display = "none";
+    clearWithin(box);
+    document.getElementById("passport_info_print").value = "";
+  }
+}
+
+document.querySelectorAll('input[name="id_doc_type"]').forEach(r=>{
+  r.addEventListener("change", syncPassport);
+});
+
+// when hiding blocks, clear values
+const _syncSim = syncSim;
+syncSim = function(){
+  _syncSim();
+  const st = document.querySelector('input[name="sim_type"]:checked')?.value || "usim";
+  if(st !== "esim") clearWithin(document.getElementById("esim_fields"));
+};
+
+const _syncJoinType = syncJoinType;
+syncJoinType = function(){
+  _syncJoinType();
+  const jt = document.querySelector('input[name="join_type"]:checked')?.value || "new";
+  if(jt !== "port") clearWithin(document.getElementById("port_row"));
+  document.getElementById("mnp1").value = jt==="port" ? "1":"";
+  document.getElementById("mnp2").value = jt==="port" ? "1":"";
+  document.getElementById("mnp3").value = jt==="port" ? "1":"";
+};
+document.getElementById("saveBtn").addEventListener("click", handleSave);
+document.getElementById("printBtn").addEventListener("click", handlePrint);
+
+// init
+(function init(){
+  // print date
+  const d = new Date();
+  document.getElementById("apply_date_year").value = String(d.getFullYear());
+  document.getElementById("apply_date_month").value = String(d.getMonth()+1).padStart(2,"0");
+  document.getElementById("apply_date_day").value = String(d.getDate()).padStart(2,"0");
+  // Numeric hard-limits
+  const onlyDigits = (s) => String(s||"").replace(/\D+/g,"");
+  const bindDigits = (id, maxLen) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener("input", ()=>{
+      const v = onlyDigits(el.value).slice(0, maxLen);
+      if(el.value !== v) el.value = v;
+    });
+  };
+  bindDigits("imei1", 15);
+  bindDigits("imei2", 15);
+  bindDigits("eid", 32);
+
+  applyLang();
+  populatePlans();
+  syncJoinType();
+  syncPrevCarrier();
+  syncSim();
+  syncPassport();
+  syncAutopay();
+  syncHolderIfForeigner();
+  updatePrintNames();
+})();
+
+// Address search (Daum Postcode)
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const btn = $("btnAddrSearch");
+  if(!btn || !window.daum || !daum.Postcode) return;
+
+  function openPopup(){
+    new daum.Postcode({
+      oncomplete: function(data){
+        $("zip").value = data.zonecode || "";
+        $("addr_road").value = data.roadAddress || data.address || "";
+        $("addr_detail").focus();
+}
+    }).open();
+  }
+  btn.addEventListener("click", openPopup);
+})();
+
+</script>
+</body>
+</html>
