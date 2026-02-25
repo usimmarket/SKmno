@@ -15,6 +15,17 @@
         "join_type"
       ],
       "on_value": "new"
+    },
+    "join_type__port": {
+      "x": 80,
+      "y": 755,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "join_type"
+      ],
+      "on_value": "port"
     }
   }
 }
