@@ -1,0 +1,6 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  included_files = ["template.pdf", "mapping.json", "mappings/mapping.json", "malgun.ttf", "BI_T.png", "usimmarket.png"]
