@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PDF 1:1 좌표 매핑 스튜디오 v3.5</title>
+<style>
+  :root{
+    --bg:#07101f; --panel:#0c1830; --card:#0f1d36; --border:#1b2a46; --text:#e9f1ff; --muted:#9fb1cf;
+    --accent:#20c3ff; --accent2:#00e0b8; --danger:#ff5a7a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,#07101f,#060b15);color:var(--text);font:14px/1.3 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    padding:10px 14px;border-bottom:1px solid #0f2446;
+    background:rgba(7,16,31,.92);backdrop-filter: blur(10px);
+    display:flex;align-items:center;gap:12px;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:10px}
+  .pill{padding:6px 10px;border:1px solid #193055;border-radius:999px;background:#0a162c;color:#d9e7ff;font-weight:700}
+  .hint{color:var(--muted);font-size:12px}
+  .wrap{display:grid;grid-template-columns:360px 1fr;gap:14px;padding:14px;max-width:1500px;margin:0 auto}
+  .panel{background:rgba(12,24,48,.72);border:1px solid var(--border);border-radius:16px;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .sectionTitle{font-weight:800;margin:12px 0 8px;color:#dbe8ff}
+  .row{display:flex;gap:8px;align-items:center}
+  input,select,button,textarea{font:inherit}
+  input,select,textarea{
+    width:100%;padding:10px 12px;border-radius:12px;border:1px solid #1b2a46;background:#081328;color:#e9f1ff;outline:none
+  }
+  input:focus,select:focus,textarea:focus{border-color:#2b73ff;box-shadow:0 0 0 3px rgba(43,115,255,.2)}
+  button{
+    padding:9px 11px;border-radius:12px;border:1px solid #20355c;background:#0b1730;color:#e9f1ff;cursor:pointer
+  }
+  button:hover{border-color:#2b73ff}
+  .btnPrimary{background:linear-gradient(135deg,var(--accent),#2b73ff);border:none;color:#04101f;font-weight:800}
+  .btnGhost{background:transparent}
+  .btnDanger{border-color:#5a1d2b;background:#1a0d14;color:#ffd0d9}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .small{font-size:12px;color:var(--muted)}
+  .list{height:320px;overflow:auto;border-radius:12px;border:1px solid #1b2a46;background:#081328;padding:6px}
+  .li{display:flex;align-items:center;gap:8px;padding:8px;border-radius:10px}
+  .li:hover{background:#0c1d3c}
+  .li .k{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .plus{width:34px;min-width:34px;height:34px;border-radius:10px;border:1px solid #24406c;background:#0b1730;color:#d9e7ff;font-weight:900}
+  .pillTag{font-size:11px;border:1px solid #20355c;border-radius:999px;padding:3px 8px;color:#cfe1ff;background:#0a162c}
+  .stageHead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+  .nav{display:flex;gap:8px;align-items:center}
+  .stageCard{height:78vh;min-height:560px}
+  .stage{
+    position:relative;height:calc(100% - 44px);
+    border:1px solid #1b2a46;border-radius:14px;background:#061022;
+    overflow:auto;padding:16px;
+  }
+  #pdfCanvas{display:block;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+  .pin{
+    position:absolute; transform: translate(-50%,-100%);
+    pointer-events:auto;
+    background:rgba(15,29,54,.92);
+    border:1px solid #274a7f;color:#e9f1ff;
+    border-radius:10px;padding:6px 8px;font-size:12px;
+    box-shadow:0 8px 18px rgba(0,0,0,.35);
+    cursor:grab;
+    user-select:none;
+  }
+  .pin:active{cursor:grabbing}
+  .pin.sel{outline:2px solid var(--accent);box-shadow:0 0 0 4px rgba(32,195,255,.18)}
+  .crosshair{
+    position:absolute; width:14px;height:14px;
+    border-left:2px solid rgba(32,195,255,.9);
+    border-top:2px solid rgba(32,195,255,.9);
+    transform: translate(-1px,-1px);
+    pointer-events:none;
+    display:none;
+  }
+  .barBtns{display:flex;gap:8px;align-items:center}
+  .kbd{padding:2px 6px;border:1px solid #23406b;border-radius:8px;background:#081328;color:#cfe1ff;font-size:11px}
+  .zoomBox{display:flex;gap:6px;align-items:center}
+  .zoomBox .z{width:64px;text-align:center;padding:6px 8px;border-radius:10px;border:1px solid #1b2a46;background:#081328}
+  .warn{color:#ffd2da;font-size:12px}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <div class="pill">PDF 1:1 좌표 매핑 스튜디오 v3.5</div>
+      <div class="hint">좌표는 <b>PDF 포인트(pt)</b> 기준으로 저장. (원점: 좌하단) · <span class="kbd">↑↓←→</span> 1pt 이동</div>
+    </div>
+    <div class="hint">줌은 화면 확대만, 저장 좌표는 항상 pt</div>
+  </div>
+
+  <div class="wrap">
+    <div class="panel">
+      <div class="sectionTitle">PDF 불러오기</div>
+      <div class="grid2">
+        <div>
+          <div class="small">URL</div>
+          <div class="row">
+            <input id="pdfUrl" placeholder="예) /template.pdf 또는 https://.../template.pdf" />
+            <button id="btnLoadUrl" class="btnPrimary">URL</button>
+          </div>
+        </div>
+        <div>
+          <div class="small">로컬 파일</div>
+          <input id="pdfFile" type="file" accept="application/pdf" />
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="btnLoadLocal" class="btnGhost">로컬</button>
+        <span class="small" id="pdfStatus">기본: /template.pdf</span>
+      </div>
+
+      <div class="sectionTitle">index.html 불러오기 → 필드 목록</div>
+      <div class="grid2">
+        <div>
+          <div class="small">URL</div>
+          <div class="row">
+            <input id="idxUrl" placeholder="예) /index.html 또는 https://.../index.html" />
+            <button id="btnIdxUrl" class="btnPrimary">URL</button>
+          </div>
+        </div>
+        <div>
+          <div class="small">로컬 파일</div>
+          <input id="idxFile" type="file" accept=".html,text/html" />
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="btnIdxLocal" class="btnGhost">로컬</button>
+        <span class="small">input/select/textarea 의 name 자동 수집</span>
+      </div>
+
+      <div class="sectionTitle">필드 목록</div>
+      <div class="row">
+        <input id="q" placeholder="필드명 검색" />
+      </div>
+      <div class="list" id="fieldList" style="margin-top:8px"></div>
+
+      <div class="sectionTitle">선택 필드 설정</div>
+      <div class="grid2">
+        <div>
+          <div class="small">모드</div>
+          <select id="mode">
+            <option value="text">텍스트</option>
+            <option value="checkbox">체크박스</option>
+            <option value="fixed">고정라벨</option>
+          </select>
+        </div>
+        <div>
+          <div class="small">page</div>
+          <input id="page" type="number" min="1" value="1" />
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <input id="key" placeholder="key (예: subscriber_name_print)" />
+      </div>
+      <div class="row" style="margin-top:8px">
+        <input id="source" placeholder="source (예: subscriber_name_print 또는 join_type)" />
+      </div>
+      <div class="grid2" style="margin-top:8px">
+        <div>
+          <div class="small">size</div>
+          <input id="size" type="number" value="10" />
+        </div>
+        <div>
+          <div class="small">on.value (checkbox 전용)</div>
+          <input id="onValue" placeholder="예) new / port / M / F" />
+        </div>
+      </div>
+
+      <div class="sectionTitle">캔버스 클릭으로 좌표 찍기</div>
+      <div class="grid2">
+        <div><input id="x" placeholder="X(pt)" /></div>
+        <div><input id="y" placeholder="Y(pt)" /></div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="arm" class="btnPrimary">좌표 찍기(ARM)</button>
+        <button id="applyXY">적용</button>
+        <button id="del" class="btnDanger">선택 삭제</button>
+      </div>
+      <div class="small" style="margin-top:8px">팁: ARM 상태에서 캔버스 클릭 → 현재 key로 핀 생성. (ARM 중에는 기존 핀 선택 안 함)</div>
+
+      <div class="sectionTitle">저장/불러오기</div>
+      <div class="row">
+        <button id="btnExport" class="btnPrimary">JSON 내보내기</button>
+        <button id="btnImport">가져오기</button>
+        <input id="importFile" type="file" accept="application/json" style="display:none" />
+      </div>
+
+      <div class="sectionTitle">텍스트 핀 목록(전체 페이지)</div>
+      <div class="list" id="pinList" style="height:160px"></div>
+
+      <div class="sectionTitle">일괄 오프셋(Δx/Δy)</div>
+      <div class="small">단위: cm 또는 pt · +X=오른쪽, +Y=위쪽 (좌표계: 좌하단)</div>
+      <div class="grid2" style="margin-top:8px">
+        <div>
+          <div class="small">ΔX(cm)</div>
+          <input id="dxcm" value="0.00" />
+        </div>
+        <div>
+          <div class="small">ΔY(cm)</div>
+          <input id="dycm" value="0.00" />
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:8px">
+        <div>
+          <div class="small">ΔX(pt)</div>
+          <input id="dxpt" value="0.00" />
+        </div>
+        <div>
+          <div class="small">ΔY(pt)</div>
+          <input id="dypt" value="0.00" />
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="applyAll" class="btnPrimary">전체 핀에 적용</button>
+        <button id="applyPage">이 페이지 핀만 적용</button>
+        <button id="resetOffset">실행 취소</button>
+      </div>
+      <div class="warn" id="offsetWarn" style="margin-top:8px;display:none">⚠ 오프셋은 좌표를 실제로 변경합니다. 되돌리려면 실행 취소를 누르세요.</div>
+    </div>
+
+    <div class="panel stageCard">
+      <div class="stageHead">
+        <div class="nav">
+          <button id="prev">이전</button>
+          <button id="next">다음</button>
+          <div class="pillTag">Page: <span id="p">1</span> / <span id="pmax">?</span></div>
+          <div class="hint">클릭하면 현재 key로 좌표 저장</div>
+        </div>
+
+        <div class="barBtns">
+          <div class="zoomBox">
+            <button id="zoomOut">-</button>
+            <div class="z" id="zoomLabel">100%</div>
+            <button id="zoomIn">+</button>
+            <button id="zoomFit" class="btnGhost">Fit</button>
+            <button id="zoom100" class="btnGhost">1:1</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="crosshair" id="cross"></div>
+        <canvas id="pdfCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+<script>
+/**
+ * PDF.js는 vendor/pdf.min.js 와 vendor/pdf.worker.min.js 를 사용합니다.
+ * (Netlify/브라우저에서 CDN 막힘 이슈 방지)
+ */
+</script>
+<script src="./vendor/pdf.min.js"></script>
+<script>
+  const $ = (s)=>document.querySelector(s);
+
+  // PDF.js worker
+  const workerUrl = new URL('./vendor/pdf.worker.min.js', location.href).toString();
+  if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
+  }
+
+  // 1pt = 1px 규칙을 유지하기 위해 CSS_UNITS를 사용
+  const CSS_UNITS = 96/72; // px/pt
+  const BASE_SCALE = 1 / CSS_UNITS; // viewport scale so that 1pt == 1px
+  const ZOOM_MIN = 0.5, ZOOM_MAX = 4.0;
+
+  const state = {
+    pdf: null,
+    pageNum: 1,
+    numPages: 1,
+    zoom: 1.0,
+    ptHeights: {}, // pageNum -> pageHeight in pt
+    ptWidths: {},
+    pins: [], // {key, type, source, onValue, size, page, x(pt), y(pt)}
+    selectedIndex: -1,
+    armed: false,
+    dragging: null, // {index, startX, startY, origX, origY}
+    offsetUndo: null
+  };
+
+  const stage = $("#stage");
+  const c = $("#pdfCanvas");
+  const ctx = c.getContext("2d");
+  const cross = $("#cross");
+
+  const setZoomLabel = ()=> {
+    $("#zoomLabel").textContent = Math.round(state.zoom*100) + "%";
+  };
+
+  function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+
+  function toPdfPtFromCanvas(xPx, yPx, pageNum){
+    const vhPx = c.height; // already scaled by zoom
+    const xPt = xPx / state.zoom;
+    const yPt = (vhPx - yPx) / state.zoom; // bottom-left origin
+    return { x: Math.round(xPt), y: Math.round(yPt) };
+  }
+
+  function toCanvasFromPdfPt(xPt, yPt, pageNum){
+    const phPt = state.ptHeights[pageNum] || (c.height/state.zoom);
+    const xPx = xPt * state.zoom;
+    const yPx = (phPt - yPt) * state.zoom; // back to top-left
+    return { x: xPx, y: yPx };
+  }
+
+  function clearSelection(){
+    state.selectedIndex = -1;
+  }
+
+  function fillInputs(p){
+    $("#key").value = p.key || "";
+    $("#mode").value = p.type || "text";
+    $("#source").value = (p.source || "");
+    $("#onValue").value = (p.onValue || "");
+    $("#size").value = (p.size ?? 10);
+    $("#page").value = p.page || state.pageNum;
+    $("#x").value = p.x ?? "";
+    $("#y").value = p.y ?? "";
+  }
+
+  function currentPinFromInputs(){
+    const type = $("#mode").value;
+    const key = $("#key").value.trim();
+    const source = $("#source").value.trim();
+    const onValue = $("#onValue").value.trim();
+    const size = parseFloat($("#size").value || "10");
+    const page = parseInt($("#page").value || state.pageNum, 10);
+    const x = parseFloat($("#x").value || "0");
+    const y = parseFloat($("#y").value || "0");
+    return { key, type, source, onValue, size, page, x, y };
+  }
+
+  function drawPins(){
+    // remove existing pin nodes (keep cross + canvas)
+    [...stage.querySelectorAll(".pin")].forEach(el=>el.remove());
+
+    const pagePins = state.pins.filter(p=>p.page===state.pageNum);
+    for (let i=0;i<pagePins.length;i++){
+      const p = pagePins[i];
+      const idx = state.pins.indexOf(p);
+      const pos = toCanvasFromPdfPt(p.x, p.y, p.page);
+
+      const el = document.createElement("div");
+      el.className = "pin" + (idx===state.selectedIndex ? " sel" : "");
+      el.textContent = p.key || "(no-key)";
+      const ox = c.offsetLeft;
+      const oy = c.offsetTop;
+      el.style.left = (ox + pos.x) + "px";
+      el.style.top  = (oy + pos.y) + "px";
+      el.dataset.index = String(idx);
+
+      // drag
+      el.addEventListener("pointerdown", (ev)=>{
+        if (state.armed) return; // placing mode
+        ev.preventDefault();
+        const index = parseInt(el.dataset.index,10);
+        state.selectedIndex = index;
+        fillInputs(state.pins[index]);
+        drawPins();
+        el.setPointerCapture(ev.pointerId);
+        state.dragging = {
+          index,
+          startX: ev.clientX,
+          startY: ev.clientY,
+          origX: state.pins[index].x,
+          origY: state.pins[index].y,
+          pointerId: ev.pointerId
+        };
+      });
+
+      stage.appendChild(el);
+    }
+
+    // pin list
+    const list = $("#pinList");
+    list.innerHTML = "";
+    state.pins.forEach((p, idx)=>{
+      const li = document.createElement("div");
+      li.className = "li";
+      li.innerHTML = `<span class="k">${escapeHtml(p.key)} <span class="pillTag">@(${p.x},${p.y}) p${p.page}</span></span>`;
+      li.addEventListener("click", ()=>{
+        state.pageNum = p.page;
+        $("#p").textContent = state.pageNum;
+        state.selectedIndex = idx;
+        render();
+      });
+      list.appendChild(li);
+    });
+  }
+
+  function escapeHtml(s){
+    return (s||"").replace(/[&<>"']/g, m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
+  }
+
+  async function render(){
+    if (!state.pdf) return;
+    state.pageNum = clamp(state.pageNum,1,state.numPages);
+    $("#p").textContent = state.pageNum;
+    $("#pmax").textContent = state.numPages;
+
+    const page = await state.pdf.getPage(state.pageNum);
+    // base viewport: 1pt==1px
+    const baseVp = page.getViewport({ scale: BASE_SCALE });
+    state.ptHeights[state.pageNum] = baseVp.height;
+    state.ptWidths[state.pageNum] = baseVp.width;
+
+    // render viewport with zoom
+    const vp = page.getViewport({ scale: BASE_SCALE * state.zoom });
+
+    c.width = Math.floor(vp.width);
+    c.height = Math.floor(vp.height);
+
+    const renderContext = { canvasContext: ctx, viewport: vp };
+    ctx.clearRect(0,0,c.width,c.height);
+    await page.render(renderContext).promise;
+
+    drawPins();
+    setZoomLabel();
+  }
+
+  async function loadPdfFromUrl(url){
+    $("#pdfStatus").textContent = "불러오는 중...";
+    const task = pdfjsLib.getDocument({ url });
+    state.pdf = await task.promise;
+    state.numPages = state.pdf.numPages;
+    state.pageNum = 1;
+    $("#pdfStatus").textContent = "PDF: " + url;
+    await render();
+  }
+
+  async function loadPdfFromFile(file){
+    $("#pdfStatus").textContent = "불러오는 중...";
+    const buf = await file.arrayBuffer();
+    const task = pdfjsLib.getDocument({ data: buf });
+    state.pdf = await task.promise;
+    state.numPages = state.pdf.numPages;
+    state.pageNum = 1;
+    $("#pdfStatus").textContent = "PDF: (로컬) " + file.name;
+    await render();
+  }
+
+  // ---------- Field list from index.html ----------
+  let allFields = [];
+  function renderFieldList(){
+    const q = ($("#q").value || "").trim().toLowerCase();
+    const list = $("#fieldList");
+    list.innerHTML = "";
+
+    const match = (it)=>{
+      const hay = ((it.label||"") + " " + (it.key||"") + " " + (it.source||"") + " " + (it.onValue||"")).toLowerCase();
+      return !q || hay.includes(q);
+    };
+
+    allFields.filter(match).forEach(it=>{
+      const row = document.createElement("div");
+      row.className = "li";
+
+      const btn = document.createElement("button");
+      btn.className = "plus";
+      btn.textContent = "+";
+      btn.title = "이 항목으로 바로 ARM";
+      btn.addEventListener("click", ()=>{
+        $("#key").value = it.key;
+        $("#source").value = it.source || it.key;
+        $("#mode").value = it.mode || "text";
+        $("#onValue").value = it.onValue || "";
+        $("#page").value = String(state.pageNum);
+        arm();
+      });
+
+      const label = document.createElement("div");
+      label.className = "k";
+      label.textContent = it.label || it.key;
+
+      row.appendChild(btn);
+      row.appendChild(label);
+
+      row.addEventListener("click", ()=>{
+        // 단순 선택만 (ARM은 안 켬)
+        $("#key").value = it.key;
+        $("#source").value = it.source || it.key;
+        $("#mode").value = it.mode || "text";
+        $("#onValue").value = it.onValue || "";
+      });
+
+      list.appendChild(row);
+    });
+  }
+
+  async function parseIndexHtml(text){
+    const doc = new DOMParser().parseFromString(text, "text/html");
+
+    // 1) 일반 필드: input/select/textarea name
+    const plainNames = new Set();
+    doc.querySelectorAll("input[name], select[name], textarea[name]").forEach(el=>{
+      const n = (el.getAttribute("name")||"").trim();
+      if (!n) return;
+      const tag = (el.tagName||"").toUpperCase();
+      const type = ((el.getAttribute("type")||"") + "").toLowerCase();
+      // radio는 아래에서 "선택지별"로 따로 펼친다
+      if (tag === "INPUT" && type === "radio") return;
+      plainNames.add(n);
+    });
+
+    // 2) radio 그룹: name + value를 선택지별 key로 펼치기
+    const radioMap = new Map(); // name -> Set(values)
+    doc.querySelectorAll('input[type="radio"][name]').forEach(el=>{
+      const name = (el.getAttribute("name")||"").trim();
+      const val = (el.getAttribute("value")||"").trim();
+      if (!name || !val) return;
+      if (!radioMap.has(name)) radioMap.set(name, new Set());
+      radioMap.get(name).add(val);
+    });
+
+    const out = [];
+
+    [...plainNames].sort().forEach(n=>{
+      out.push({ label: n, key: n, source: n, mode: "text", onValue: "" });
+    });
+
+    // 선택지별 key: `${name}__${value}`
+    [...radioMap.entries()].sort((a,b)=>a[0].localeCompare(b[0])).forEach(([name, setVals])=>{
+      [...setVals].sort().forEach(v=>{
+        out.push({
+          label: `${name} = ${v}`,
+          key: `${name}__${v}`,
+          source: name,
+          mode: "checkbox",
+          onValue: v
+        });
+      });
+    });
+
+    allFields = out;
+    renderFieldList();
+    return out;
+  }
+
+  // ---------- Placement / selection ----------
+  function arm(){
+    state.armed = true;
+    cross.style.display = "block";
+    clearSelection();
+    drawPins();
+  }
+  function disarm(){
+    state.armed = false;
+    cross.style.display = "none";
+  }
+
+  $("#arm").addEventListener("click", ()=>{
+    if (state.armed) disarm(); else arm();
+  });
+
+  // prevent stage selecting during armed placement
+  stage.addEventListener("click", (e)=>{
+    if (state.armed) return;
+    if (state.dragging) return;
+    if (e.target.classList.contains("pin")) return;
+
+    // select nearest pin on current page (within threshold)
+    const rect = c.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const phPt = state.ptHeights[state.pageNum] || (c.height/state.zoom);
+    const clickPt = { x: x/state.zoom, y: (c.height - y)/state.zoom };
+
+    let best=-1, bestD=999999;
+    state.pins.forEach((p, idx)=>{
+      if (p.page !== state.pageNum) return;
+      const dx = p.x - clickPt.x;
+      const dy = p.y - clickPt.y;
+      const d = dx*dx + dy*dy;
+      if (d < bestD){ bestD=d; best=idx; }
+    });
+    const thresholdPt = 18; // 18pt
+    if (best !== -1 && bestD <= thresholdPt*thresholdPt){
+      state.selectedIndex = best;
+      fillInputs(state.pins[best]);
+      drawPins();
+    } else {
+      clearSelection();
+      drawPins();
+    }
+  }, true);
+
+  c.addEventListener("mousemove", (e)=>{
+    if (!state.armed) return;
+    const rect = c.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const ox = c.offsetLeft;
+    const oy = c.offsetTop;
+    cross.style.left = (ox + x) + "px";
+    cross.style.top  = (oy + y) + "px";
+  });
+
+  c.addEventListener("click", (e)=>{
+    if (!state.pdf) return;
+    if (!state.armed) return;
+
+    const key = $("#key").value.trim();
+    if (!key){ alert("key를 먼저 입력/선택해 주세요."); return; }
+
+    const rect = c.getBoundingClientRect();
+    const xPx = e.clientX - rect.left;
+    const yPx = e.clientY - rect.top;
+
+    const pt = toPdfPtFromCanvas(xPx, yPx, state.pageNum);
+    $("#x").value = pt.x;
+    $("#y").value = pt.y;
+
+    const pin = currentPinFromInputs();
+    pin.x = pt.x; pin.y = pt.y; pin.page = state.pageNum;
+
+    // append
+    state.pins.push(pin);
+    state.selectedIndex = state.pins.length - 1;
+
+    drawPins();
+  });
+
+  // Drag handling (move selected pin)
+  window.addEventListener("pointermove", (ev)=>{
+    if (!state.dragging) return;
+    const d = state.dragging;
+    const dxPx = ev.clientX - d.startX;
+    const dyPx = ev.clientY - d.startY;
+
+    const dxPt = dxPx / state.zoom;
+    const dyPt = -dyPx / state.zoom;
+
+    const p = state.pins[d.index];
+    p.x = Math.round(d.origX + dxPt);
+    p.y = Math.round(d.origY + dyPt);
+
+    $("#x").value = p.x; $("#y").value = p.y;
+
+    // update only dragged pin element (avoid destroying pointer capture)
+    const el = stage.querySelector(`.pin[data-index="${d.index}"]`);
+    if (el){
+      const pos = toCanvasFromPdfPt(p.x, p.y, p.page);
+      const ox = c.offsetLeft;
+      const oy = c.offsetTop;
+      el.style.left = (ox + pos.x) + "px";
+      el.style.top  = (oy + pos.y) + "px";
+    }
+  }, { passive:false });
+
+  window.addEventListener("pointerup", (ev)=>{
+    if (!state.dragging) return;
+    state.dragging = null;
+  });
+
+  // Nudge keys
+  window.addEventListener("keydown", (e)=>{
+    if (["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName)) return;
+    if (state.selectedIndex < 0) return;
+    const p = state.pins[state.selectedIndex];
+    let moved = false;
+    if (e.key === "ArrowLeft"){ p.x -= 1; moved = true; }
+    if (e.key === "ArrowRight"){ p.x += 1; moved = true; }
+    if (e.key === "ArrowUp"){ p.y += 1; moved = true; }
+    if (e.key === "ArrowDown"){ p.y -= 1; moved = true; }
+    if (moved){
+      $("#x").value = p.x; $("#y").value = p.y;
+      drawPins();
+      e.preventDefault();
+    }
+  });
+
+  $("#applyXY").addEventListener("click", ()=>{
+    if (state.selectedIndex < 0) return alert("선택된 핀이 없습니다.");
+    const p = state.pins[state.selectedIndex];
+    const pin = currentPinFromInputs();
+    // keep page if invalid
+    p.key = pin.key;
+    p.type = pin.type;
+    p.source = pin.source;
+    p.onValue = pin.onValue;
+    p.size = pin.size;
+    p.page = parseInt(pin.page,10) || p.page;
+    p.x = Math.round(parseFloat(pin.x));
+    p.y = Math.round(parseFloat(pin.y));
+    render();
+  });
+
+  $("#del").addEventListener("click", ()=>{
+    if (state.selectedIndex < 0) return;
+    state.pins.splice(state.selectedIndex,1);
+    state.selectedIndex = -1;
+    render();
+  });
+
+  // ---------- Export / import ----------
+  function exportJson(){
+    const obj = { meta: { version: "3.5", unit: "pt", origin: "bottom-left" }, fields:{} };
+    state.pins.forEach(p=>{
+      const k = p.key;
+      obj.fields[k] = {
+        x: p.x, y: p.y, size: p.size,
+        page: p.page,
+        type: p.type || "text",
+        source: (p.source ? [p.source] : []),
+      };
+      if (p.type === "checkbox"){
+        obj.fields[k].on_value = p.onValue || "";
+      }
+    });
+    const blob = new Blob([JSON.stringify(obj,null,2)],{type:"application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "mapping.json";
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+  }
+  $("#btnExport").addEventListener("click", exportJson);
+
+  $("#btnImport").addEventListener("click", ()=> $("#importFile").click());
+  $("#importFile").addEventListener("change", async (e)=>{
+    const f = e.target.files?.[0];
+    if (!f) return;
+    const text = await f.text();
+    const obj = JSON.parse(text);
+    const pins = [];
+    const fields = obj.fields || {};
+    for (const [key, v] of Object.entries(fields)){
+      pins.push({
+        key,
+        type: v.type || "text",
+        source: (Array.isArray(v.source) && v.source[0]) ? v.source[0] : "",
+        onValue: v.on_value || "",
+        size: v.size ?? 10,
+        page: v.page ?? 1,
+        x: v.x ?? 0,
+        y: v.y ?? 0,
+      });
+    }
+    state.pins = pins;
+    state.selectedIndex = -1;
+    render();
+  });
+
+  // ---------- Offset ----------
+  function cmToPt(cm){ return (parseFloat(cm)||0) * 28.3464567; } // 1cm = 28.3464567pt
+  function readOffsetPt(){
+    const dxpt = parseFloat($("#dxpt").value)||0;
+    const dypt = parseFloat($("#dypt").value)||0;
+    const dxcm = cmToPt($("#dxcm").value);
+    const dycm = cmToPt($("#dycm").value);
+    return { dx: dxpt + dxcm, dy: dypt + dycm };
+  }
+
+  function applyOffset(filterFn){
+    const {dx,dy} = readOffsetPt();
+    if (!state.offsetUndo) state.offsetUndo = JSON.parse(JSON.stringify(state.pins));
+    $("#offsetWarn").style.display = "block";
+    state.pins.forEach(p=>{
+      if (!filterFn(p)) return;
+      p.x = Math.round(p.x + dx);
+      p.y = Math.round(p.y + dy);
+    });
+    render();
+  }
+
+  $("#applyAll").addEventListener("click", ()=>applyOffset(()=>true));
+  $("#applyPage").addEventListener("click", ()=>applyOffset(p=>p.page===state.pageNum));
+  $("#resetOffset").addEventListener("click", ()=>{
+    if (!state.offsetUndo) return;
+    state.pins = state.offsetUndo;
+    state.offsetUndo = null;
+    $("#offsetWarn").style.display = "none";
+    render();
+  });
+
+  // ---------- Navigation / zoom ----------
+  $("#prev").addEventListener("click", ()=>{ state.pageNum--; render(); });
+  $("#next").addEventListener("click", ()=>{ state.pageNum++; render(); });
+
+  $("#zoomIn").addEventListener("click", ()=>{ state.zoom = clamp(state.zoom*1.15, ZOOM_MIN, ZOOM_MAX); render(); });
+  $("#zoomOut").addEventListener("click", ()=>{ state.zoom = clamp(state.zoom/1.15, ZOOM_MIN, ZOOM_MAX); render(); });
+  $("#zoom100").addEventListener("click", ()=>{ state.zoom = 1.0; render(); });
+  $("#zoomFit").addEventListener("click", async ()=>{
+    if (!state.pdf) return;
+    const page = await state.pdf.getPage(state.pageNum);
+    const baseVp = page.getViewport({ scale: BASE_SCALE });
+    const innerW = stage.clientWidth - 32; // padding 16*2
+    const fit = innerW / baseVp.width;
+    state.zoom = clamp(fit, ZOOM_MIN, ZOOM_MAX);
+    render();
+  });
+
+  // ---------- PDF load handlers ----------
+  $("#btnLoadUrl").addEventListener("click", ()=>{
+    const url = ($("#pdfUrl").value || "").trim() || "/template.pdf";
+    loadPdfFromUrl(url);
+  });
+  $("#btnLoadLocal").addEventListener("click", ()=>{
+    const f = $("#pdfFile").files?.[0];
+    if (!f) return alert("PDF 파일을 선택해 주세요.");
+    loadPdfFromFile(f);
+  });
+
+  // ---------- index.html load handlers ----------
+  $("#q").addEventListener("input", renderFieldList);
+
+  $("#btnIdxUrl").addEventListener("click", async ()=>{
+    const url = ($("#idxUrl").value || "").trim() || "/index.html";
+    const res = await fetch(url, { cache:"no-store" });
+    const text = await res.text();
+    await parseIndexHtml(text);
+  });
+
+  $("#btnIdxLocal").addEventListener("click", async ()=>{
+    const f = $("#idxFile").files?.[0];
+    if (!f) return alert("index.html 파일을 선택해 주세요.");
+    await parseIndexHtml(await f.text());
+  });
+
+  // keep selectedKey in sync (fix "항상 같은 key로 저장" 문제)
+  $("#key").addEventListener("input", ()=>{
+    // when armed, nothing to do; click reads live key value.
+  });
+
+  // ---------- Boot ----------
+  (async ()=>{
+    // defaults
+    $("#pdfUrl").value = "/template.pdf";
+    $("#idxUrl").value = "/index.html";
+    setZoomLabel();
+    try{
+      await loadPdfFromUrl("/template.pdf");
+    }catch(e){
+      $("#pdfStatus").textContent = "PDF 로드 실패: " + (e?.message || e);
+    }
+    // field list tries to load /index.html but ignore failure
+    try{
+      const res = await fetch("/index.html", { cache:"no-store" });
+      if (res.ok) await parseIndexHtml(await res.text());
+    }catch(_){}
+  })();
+</script>
+</body>
+</html>
