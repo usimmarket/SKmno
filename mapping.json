@@ -76,6 +76,16 @@
       "source": [
         "final_monthly_fee"
       ]
+    },
+    "final_monthly_fee_1": {
+      "x": 515,
+      "y": 588,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "final_monthly_fee"
+      ]
     }
   }
 }
