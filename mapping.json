@@ -146,6 +146,16 @@
       "source": [
         "subscriber_name_print"
       ]
+    },
+    "subscriber_name_print_6": {
+      "x": 398,
+      "y": 490,
+      "size": 5,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
     }
   }
 }
