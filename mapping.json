@@ -108,9 +108,9 @@
       ]
     },
     "subscriber_name_print_2": {
-      "x": 384,
-      "y": 458,
-      "size": 4,
+      "x": 194,
+      "y": 426,
+      "size": 5,
       "page": 1,
       "type": "text",
       "source": [
