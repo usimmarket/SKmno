@@ -196,6 +196,16 @@
       "source": [
         "passport_info_print"
       ]
+    },
+    "esim_info_print": {
+      "x": 167,
+      "y": 277,
+      "size": 5,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "esim_info_print"
+      ]
     }
   }
 }
