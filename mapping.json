@@ -38,8 +38,8 @@
       ]
     },
     "base_monthly_fee": {
-      "x": 145,
-      "y": 627,
+      "x": 155,
+      "y": 626,
       "size": 10,
       "page": 1,
       "type": "text",
