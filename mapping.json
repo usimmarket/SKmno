@@ -16,24 +16,6 @@
       ],
       "on_value": "new"
     },
-    "join_type__port": {{
-  "meta": {
-    "version": "3.5",
-    "unit": "pt",
-    "origin": "bottom-left"
-  },
-  "fields": {
-    "join_type__new": {
-      "x": 68,
-      "y": 755,
-      "size": 12,
-      "page": 1,
-      "type": "checkbox",
-      "source": [
-        "join_type"
-      ],
-      "on_value": "new"
-    },
     "join_type__port": {
       "x": 92,
       "y": 755,
@@ -129,98 +111,6 @@
       "x": 384,
       "y": 458,
       "size": 4,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "subscriber_name_print"
-      ]
-    }
-  }
-}
-      "x": 92,
-      "y": 755,
-      "size": 12,
-      "page": 1,
-      "type": "checkbox",
-      "source": [
-        "join_type"
-      ],
-      "on_value": "port"
-    },
-    "plan_name": {
-      "x": 105,
-      "y": 644,
-      "size": 12,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "plan_name"
-      ]
-    },
-    "base_monthly_fee": {
-      "x": 155,
-      "y": 626,
-      "size": 10,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "base_monthly_fee"
-      ]
-    },
-    "plan_disc": {
-      "x": 155,
-      "y": 606,
-      "size": 10,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "plan_disc"
-      ]
-    },
-    "plan_disc_1": {
-      "x": 155,
-      "y": 588,
-      "size": 10,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "plan_disc"
-      ]
-    },
-    "final_monthly_fee": {
-      "x": 515,
-      "y": 642,
-      "size": 10,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "final_monthly_fee"
-      ]
-    },
-    "final_monthly_fee_1": {
-      "x": 515,
-      "y": 588,
-      "size": 11,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "final_monthly_fee"
-      ]
-    },
-    "subscriber_name_print": {
-      "x": 134,
-      "y": 521,
-      "size": 8,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "subscriber_name_print"
-      ]
-    },
-    "subscriber_name_print_1": {
-      "x": 471,
-      "y": 685,
-      "size": 5,
       "page": 1,
       "type": "text",
       "source": [
