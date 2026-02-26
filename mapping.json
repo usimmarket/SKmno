@@ -186,6 +186,16 @@
       "source": [
         "subscriber_name_print"
       ]
+    },
+    "passport_info_print": {
+      "x": 224,
+      "y": 800,
+      "size": 6,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "passport_info_print"
+      ]
     }
   }
 }
