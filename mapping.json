@@ -86,6 +86,16 @@
       "source": [
         "final_monthly_fee"
       ]
+    },
+    "subscriber_name_print": {
+      "x": 139,
+      "y": 555,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
     }
   }
 }
