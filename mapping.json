@@ -198,9 +198,9 @@
       ]
     },
     "esim_info_print": {
-      "x": 167,
-      "y": 277,
-      "size": 5,
+      "x": 133,
+      "y": 327,
+      "size": 6,
       "page": 1,
       "type": "text",
       "source": [
