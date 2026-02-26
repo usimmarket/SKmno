@@ -188,9 +188,9 @@
       ]
     },
     "passport_info_print": {
-      "x": 224,
-      "y": 800,
-      "size": 6,
+      "x": 293,
+      "y": 831,
+      "size": 8,
       "page": 1,
       "type": "text",
       "source": [
