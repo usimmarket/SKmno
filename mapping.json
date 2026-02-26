@@ -159,7 +159,17 @@
     },
     "subscriber_name_print_7": {
       "x": 430,
-      "y": 121,
+      "y": 122,
+      "size": 6,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
+    },
+    "subscriber_name_print_8": {
+      "x": 430,
+      "y": 82,
       "size": 6,
       "page": 2,
       "type": "text",
