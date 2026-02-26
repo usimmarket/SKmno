@@ -46,6 +46,16 @@
       "source": [
         "base_monthly_fee"
       ]
+    },
+    "plan_disc": {
+      "x": 155,
+      "y": 614,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "plan_disc"
+      ]
     }
   }
 }
