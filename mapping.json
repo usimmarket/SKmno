@@ -336,6 +336,16 @@
       "source": [
         "card_exp_year"
       ]
+    },
+    "card_exp_month": {
+      "x": 550,
+      "y": 437,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "card_exp_month"
+      ]
     }
   }
 }
