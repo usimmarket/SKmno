@@ -206,6 +206,16 @@
       "source": [
         "esim_info_print"
       ]
+    },
+    "apply_date_year": {
+      "x": 361,
+      "y": 113,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "apply_date_year"
+      ]
     }
   }
 }
