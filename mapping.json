@@ -286,6 +286,16 @@
       "source": [
         "addr"
       ]
+    },
+    "birth": {
+      "x": 314,
+      "y": 521,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "birth"
+      ]
     }
   }
 }
