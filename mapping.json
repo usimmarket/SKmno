@@ -348,9 +348,9 @@
       ]
     },
     "sim_type__esim": {
-      "x": 393,
-      "y": 351,
-      "size": 10,
+      "x": 396,
+      "y": 336,
+      "size": 12,
       "page": 1,
       "type": "checkbox",
       "source": [
