@@ -188,8 +188,8 @@
       ]
     },
     "passport_info_print": {
-      "x": 250,
-      "y": 808,
+      "x": 248,
+      "y": 813,
       "size": 8,
       "page": 1,
       "type": "text",
@@ -198,9 +198,9 @@
       ]
     },
     "esim_info_print": {
-      "x": 350,
-      "y": 808,
-      "size": 7,
+      "x": 355,
+      "y": 813,
+      "size": 8,
       "page": 1,
       "type": "text",
       "source": [
