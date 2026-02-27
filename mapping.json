@@ -346,6 +346,17 @@
       "source": [
         "card_exp_month"
       ]
+    },
+    "sim_type__esim": {
+      "x": 393,
+      "y": 351,
+      "size": 10,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "sim_type"
+      ],
+      "on_value": "esim"
     }
   }
 }
