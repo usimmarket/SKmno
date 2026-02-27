@@ -256,6 +256,16 @@
       "source": [
         "apply_date_month"
       ]
+    },
+    "apply_date_day_1": {
+      "x": 353,
+      "y": 548,
+      "size": 10,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "apply_date_day"
+      ]
     }
   }
 }
