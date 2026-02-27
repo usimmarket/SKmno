@@ -357,6 +357,16 @@
         "sim_type"
       ],
       "on_value": "esim"
+    },
+    "sim_serial": {
+      "x": 115,
+      "y": 349,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "sim_serial"
+      ]
     }
   }
 }
