@@ -267,14 +267,14 @@
         "apply_date_day"
       ]
     },
-    "addr_road": {
-      "x": 135,
-      "y": 132,
+    "addr": {
+      "x": 181,
+      "y": 143,
       "size": 10,
       "page": 2,
       "type": "text",
       "source": [
-        "addr_road"
+        "addr"
       ]
     }
   }
