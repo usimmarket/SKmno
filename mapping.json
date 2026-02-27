@@ -367,6 +367,16 @@
       "source": [
         "sim_serial"
       ]
+    },
+    "port_number": {
+      "x": 164,
+      "y": 225,
+      "size": 14,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "port_number"
+      ]
     }
   }
 }
