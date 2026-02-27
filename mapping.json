@@ -309,7 +309,7 @@
     },
     "autopay_org": {
       "x": 198,
-      "y": 440,
+      "y": 438,
       "size": 10,
       "page": 1,
       "type": "text",
