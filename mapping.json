@@ -360,7 +360,7 @@
     },
     "sim_serial": {
       "x": 115,
-      "y": 349,
+      "y": 334,
       "size": 12,
       "page": 1,
       "type": "text",
