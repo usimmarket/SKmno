@@ -266,6 +266,16 @@
       "source": [
         "apply_date_day"
       ]
+    },
+    "addr_road": {
+      "x": 135,
+      "y": 132,
+      "size": 10,
+      "page": 2,
+      "type": "text",
+      "source": [
+        "addr_road"
+      ]
     }
   }
 }
