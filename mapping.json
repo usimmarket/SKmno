@@ -296,6 +296,16 @@
       "source": [
         "birth"
       ]
+    },
+    "birth_1": {
+      "x": 415,
+      "y": 426,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "birth"
+      ]
     }
   }
 }
