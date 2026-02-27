@@ -377,6 +377,17 @@
       "source": [
         "port_number"
       ]
+    },
+    "mnp1": {
+      "x": 129,
+      "y": 199,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "mnp1"
+      ],
+      "on_value": ""
     }
   }
 }
