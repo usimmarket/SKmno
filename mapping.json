@@ -388,6 +388,61 @@
         "mnp1"
       ],
       "on_value": "Y"
+    },
+    "prev_carrier_kt": {
+      "x": 0,
+      "y": 0,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
+      ],
+      "on_value": "kt"
+    },
+    "prev_carrier_lgu": {
+      "x": 0,
+      "y": 0,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
+      ],
+      "on_value": "lgu"
+    },
+    "prev_carrier_mvno": {
+      "x": 0,
+      "y": 0,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
+      ],
+      "on_value": "mvno"
+    },
+    "mnp2": {
+      "x": 0,
+      "y": 0,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "mnp2"
+      ],
+      "on_value": "Y"
+    },
+    "mnp3": {
+      "x": 0,
+      "y": 0,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "mnp3"
+      ],
+      "on_value": "Y"
     }
   }
 }
