@@ -582,7 +582,7 @@ document.getElementById("resetBtn").addEventListener("click", ()=>{
   syncSim();
   syncPassport();
   syncAutopay();
-  syncHolderIfForeigner();
+  try{ syncHolderIfForeigner(); }catch(e){}
   updatePrintNames();
   const d = new Date();
   document.getElementById("apply_date_year").value = String(d.getFullYear());
@@ -774,15 +774,37 @@ document.getElementById("printBtn").addEventListener("click", handlePrint);
   syncSim();
   syncPassport();
   syncAutopay();
-  syncHolderIfForeigner();
+  try{ syncHolderIfForeigner(); }catch(e){}
   updatePrintNames();
 })();
 
-// Address search (Daum Postcode)
+// Address search (Daum Postcode) - robust lazy loader (no design change)
 (function(){
   const $ = (id) => document.getElementById(id);
   const btn = $("btnAddrSearch");
-  if(!btn || !window.daum || !daum.Postcode) return;
+  if(!btn) return;
+
+  const POSTCODE_SRC = "https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+
+  function ensurePostcodeLoaded(){
+    return new Promise((resolve, reject)=>{
+      if (window.daum && daum.Postcode) return resolve();
+
+      const existing = document.querySelector('script[src="' + POSTCODE_SRC + '"]');
+      if(existing){
+        existing.addEventListener("load", ()=>resolve(), { once:true });
+        existing.addEventListener("error", ()=>reject(new Error("postcode script load failed")), { once:true });
+        setTimeout(()=> (window.daum && daum.Postcode) ? resolve() : null, 150);
+        return;
+      }
+
+      const s = document.createElement("script");
+      s.src = POSTCODE_SRC;
+      s.onload = ()=>resolve();
+      s.onerror = ()=>reject(new Error("postcode script load failed"));
+      document.head.appendChild(s);
+    });
+  }
 
   function openPopup(){
     new daum.Postcode({
@@ -790,12 +812,21 @@ document.getElementById("printBtn").addEventListener("click", handlePrint);
         $("zip").value = data.zonecode || "";
         $("addr_road").value = data.roadAddress || data.address || "";
         $("addr_detail").focus();
-}
+      }
     }).open();
   }
-  btn.addEventListener("click", openPopup);
-})();
 
+  btn.addEventListener("click", async ()=>{
+    try{
+      await ensurePostcodeLoaded();
+      if(!(window.daum && daum.Postcode)) throw new Error("daum.Postcode not available");
+      openPopup();
+    }catch(err){
+      alert("주소검색을 불러오지 못했습니다. 네트워크/차단 설정을 확인해주세요.");
+      console.error(err);
+    }
+  });
+})();
 </script>
 </body>
 </html>
