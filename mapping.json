@@ -387,7 +387,7 @@
       "source": [
         "mnp1"
       ],
-      "on_value": ""
+      "on_value": "Y"
     },
     "prev_carrier_kt": {
       "x": 382,
@@ -396,9 +396,9 @@
       "page": 1,
       "type": "checkbox",
       "source": [
-        "prev_carrier_kt"
+        "prev_carrier"
       ],
-      "on_value": ""
+      "on_value": "kt"
     },
     "prev_carrier_lgu": {
       "x": 409,
@@ -407,9 +407,9 @@
       "page": 1,
       "type": "checkbox",
       "source": [
-        "prev_carrier_lgu"
+        "prev_carrier"
       ],
-      "on_value": ""
+      "on_value": "lgu"
     },
     "prev_carrier_mvno": {
       "x": 448,
@@ -418,9 +418,9 @@
       "page": 1,
       "type": "checkbox",
       "source": [
-        "prev_carrier_mvno"
+        "prev_carrier"
       ],
-      "on_value": ""
+      "on_value": "mvno"
     },
     "mnp2": {
       "x": 255,
@@ -431,7 +431,7 @@
       "source": [
         "mnp2"
       ],
-      "on_value": ""
+      "on_value": "Y"
     },
     "mnp3": {
       "x": 429,
@@ -442,7 +442,7 @@
       "source": [
         "mnp3"
       ],
-      "on_value": ""
+      "on_value": "Y"
     },
     "mvno_name": {
       "x": 463,
