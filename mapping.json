@@ -445,8 +445,8 @@
       "on_value": "Y"
     },
     "mvno_name": {
-      "x": 484,
-      "y": 209,
+      "x": 488,
+      "y": 207,
       "size": 10,
       "page": 1,
       "type": "text",
