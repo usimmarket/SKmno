@@ -306,6 +306,7 @@ label.radio:has(input:checked){border-color:rgba(6,182,212,.55);background:rgba(
       </div>
       <div class="muted" data-i18n="esim_note">(IMEI와 EID 정보는 키패드에서 *#06#을 누르시면 바로 확인이 가능합니다.)</div>
     </div>
+      <input type="hidden" id="esim_info_print" name="esim_info_print" value="">
   </section>
 
   <section class="card">
@@ -722,6 +723,64 @@ function syncPassport(){
   }
 }
 
+// --- Passport/eSIM print blocks (only these two features) ---
+function updatePassportInfoPrint(){
+  const type = document.querySelector('input[name="id_doc_type"]:checked')?.value || "arc";
+  const outEl = document.getElementById("passport_info_print");
+  if(!outEl) return;
+  if(type !== "passport"){
+    outEl.value = "";
+    return;
+  }
+  const v = (id)=> (document.getElementById(id)?.value || "").trim();
+  const lines = [
+    "-여권번호 : " + v("passport_no"),
+    "-국적 : " + v("nationality"),
+    "-생년월일 : " + v("passport_birth"),
+    "-체류자격 : " + v("stay_status"),
+    "-체류기간 만료일 : " + v("stay_expiry"),
+  ];
+  // If all values empty, keep empty (avoid printing labels only)
+  const hasAny = lines.some(line => !line.endsWith(" : "));
+  outEl.value = hasAny ? lines.join("\n") : "";
+}
+
+function updateEsimInfoPrint(){
+  const st = document.querySelector('input[name="sim_type"]:checked')?.value || "usim";
+  const outEl = document.getElementById("esim_info_print");
+  if(!outEl) return;
+  if(st !== "esim"){
+    outEl.value = "";
+    return;
+  }
+  const v = (id)=> (document.getElementById(id)?.value || "").trim();
+  const lines = [
+    "-모델명: " + v("esim_model"),
+    "-imei: " + v("imei1"),
+    "-imei2: " + v("imei2"),
+    "-EID: " + v("eid"),
+  ];
+  const hasAny = lines.some(line => !line.endsWith(": "));
+  outEl.value = hasAny ? lines.join("\n") : "";
+}
+
+// Keep print fields synced
+["passport_no","nationality","passport_birth","stay_status","stay_expiry"].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.addEventListener("input", updatePassportInfoPrint);
+});
+["imei1","imei2","eid","esim_model"].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.addEventListener("input", updateEsimInfoPrint);
+});
+document.querySelectorAll('input[name="id_doc_type"]').forEach(r=>{
+  r.addEventListener("change", ()=>{ syncPassport(); updatePassportInfoPrint(); });
+});
+document.querySelectorAll('input[name="sim_type"]').forEach(r=>{
+  r.addEventListener("change", ()=>{ syncSim(); updateEsimInfoPrint(); });
+});
+// --- end ---
+
 document.querySelectorAll('input[name="id_doc_type"]').forEach(r=>{
   r.addEventListener("change", syncPassport);
 });
@@ -778,6 +837,9 @@ document.getElementById("printBtn").addEventListener("click", handlePrint);
   updatePrintNames();
 })();
 
+  // ensure passport/esim print blocks are initialized
+  try{ updatePassportInfoPrint(); }catch(e){}
+  try{ updateEsimInfoPrint(); }catch(e){}
 // Address search (Daum Postcode) - robust lazy loader (no design change)
 (function(){
   const $ = (id) => document.getElementById(id);
