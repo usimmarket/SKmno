@@ -434,8 +434,8 @@
       "on_value": "Y"
     },
     "mnp3": {
-      "x": 0,
-      "y": 0,
+      "x": 358,
+      "y": 189,
       "size": 12,
       "page": 1,
       "type": "checkbox",
