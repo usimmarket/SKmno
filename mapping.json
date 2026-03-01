@@ -390,8 +390,8 @@
       "on_value": "Y"
     },
     "prev_carrier_kt": {
-      "x": 403,
-      "y": 207,
+      "x": 388,
+      "y": 209,
       "size": 12,
       "page": 1,
       "type": "checkbox",
