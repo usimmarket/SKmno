@@ -423,8 +423,8 @@
       "on_value": "mvno"
     },
     "mnp2": {
-      "x": 254,
-      "y": 167,
+      "x": 255,
+      "y": 169,
       "size": 12,
       "page": 1,
       "type": "checkbox",
