@@ -401,8 +401,8 @@
       "on_value": "kt"
     },
     "prev_carrier_lgu": {
-      "x": 0,
-      "y": 0,
+      "x": 420,
+      "y": 209,
       "size": 12,
       "page": 1,
       "type": "checkbox",
