@@ -441,8 +441,16 @@
       "type": "checkbox",
       "source": [
         "mnp3"
-      ],
-      "on_value": "Y"
+    },
+    "mvno_name": {
+      "x": 463,
+      "y": 209,
+      "size": 10,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "mvno_name"
+      ]
     }
   }
 }
