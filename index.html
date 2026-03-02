@@ -573,6 +573,32 @@ if(subscriberNameEl){
 }
 // ---- end ----
 
+// ---- Customer birth -> Auto-pay birth sync (only this feature) ----
+const customerBirthEl = document.getElementById("birth");
+const autopayBirthEl = document.getElementById("autopay_birth");
+
+// If the user manually edits autopay_birth, don't overwrite afterwards.
+let autopayBirthTouched = false;
+if(autopayBirthEl){
+  autopayBirthEl.addEventListener("input", ()=>{
+    autopayBirthTouched = true;
+  });
+}
+
+function syncAutopayBirthFromCustomer(){
+  if(!customerBirthEl || !autopayBirthEl) return;
+  const birthVal = customerBirthEl.value || "";
+  if(!autopayBirthTouched || !autopayBirthEl.value){
+    autopayBirthEl.value = birthVal;
+  }
+}
+
+if(customerBirthEl){
+  customerBirthEl.addEventListener("input", syncAutopayBirthFromCustomer);
+}
+// ---- end ----
+
+
 
 
 document.getElementById("resetBtn").addEventListener("click", ()=>{
