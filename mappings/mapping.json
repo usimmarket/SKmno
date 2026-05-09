@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "version": "3.5",
+    "unit": "pt",
+    "origin": "bottom-left",
+    "pdf": "template.pdf",
+    "converted_from": "TOP (8).json",
+    "pdf_width": 1243.5,
+    "pdf_height": 1759.5,
+    "source_previewW": 1299.0,
+    "source_previewH": 1841.0,
+    "scaleX_applied": 0.9572748267898383,
+    "scaleY_applied": 0.9557305812058664
+  },
+  "fields": {
+    "plan_name_p1_1": {
+      "x": 193.37,
+      "y": 1162.17,
+      "size": 12.0,
+      "page": 1,
+      "source": [
+        "plan_name"
+      ],
+      "type": "text"
+    },
+    "subscriber_name_print_p1_2": {
+      "x": 286.23,
+      "y": 817.15,
+      "size": 8.0,
+      "page": 1,
+      "source": [
+        "subscriber_name_print"
+      ],
+      "type": "text"
+    },
+    "subscriber_name_print_p1_3": {
+      "x": 806.03,
+      "y": 775.1,
+      "size": 5.0,
+      "page": 1,
+      "source": [
+        "subscriber_name_print"
+      ],
+      "type": "text"
+    },
+    "subscriber_name_print_p1_4": {
+      "x": 365.68,
+      "y": 1475.65,
+      "size": 5.0,
+      "page": 1,
+      "source": [
+        "subscriber_name_print"
+      ],
+      "type": "text"
+    },
+    "esim_info_print_p1_5": {
+      "x": 137.85,
+      "y": 1775.75,
+      "size": 8.0,
+      "page": 1,
+      "source": [
+        "esim_info_print"
+      ],
+      "type": "text"
+    },
+    "apply_date_year_p1_6": {
+      "x": 718.91,
+      "y": 1546.37,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "apply_date_year"
+      ],
+      "type": "text"
+    },
+    "apply_date_month_p1_7": {
+      "x": 525.54,
+      "y": 1596.07,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "apply_date_month"
+      ],
+      "type": "text"
+    },
+    "apply_date_day_p1_8": {
+      "x": 641.37,
+      "y": 1593.2,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "apply_date_day"
+      ],
+      "type": "text"
+    },
+    "addr_p1_9": {
+      "x": 195.28,
+      "y": 1309.35,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "addr"
+      ],
+      "type": "text"
+    },
+    "birth_p1_10": {
+      "x": 422.16,
+      "y": 1434.55,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "birth"
+      ],
+      "type": "text"
+    },
+    "autopay_org_p1_11": {
+      "x": 118.7,
+      "y": 1278.77,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "autopay_org"
+      ],
+      "type": "text"
+    },
+    "autopay_number_p1_12": {
+      "x": 228.79,
+      "y": 1278.77,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "autopay_number"
+      ],
+      "type": "text"
+    },
+    "card_exp_year_p1_13": {
+      "x": 507.36,
+      "y": 1278.77,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "card_exp_year"
+      ],
+      "type": "text"
+    },
+    "card_exp_month_p1_14": {
+      "x": 597.34,
+      "y": 1278.77,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "card_exp_month"
+      ],
+      "type": "text"
+    },
+    "sim_serial_p1_15": {
+      "x": 422.16,
+      "y": 1203.26,
+      "size": 12.0,
+      "page": 1,
+      "source": [
+        "sim_serial"
+      ],
+      "type": "text"
+    },
+    "mnp1_p1_16": {
+      "x": 771.56,
+      "y": 1090.49,
+      "size": 12.0,
+      "page": 1,
+      "source": [
+        "mnp1"
+      ],
+      "type": "text"
+    },
+    "mnp2_p1_17": {
+      "x": 837.62,
+      "y": 1091.44,
+      "size": 12.0,
+      "page": 1,
+      "source": [
+        "mnp2"
+      ],
+      "type": "text"
+    },
+    "mnp3_p1_18": {
+      "x": 927.6,
+      "y": 1089.53,
+      "size": 12.0,
+      "page": 1,
+      "source": [
+        "mnp3"
+      ],
+      "type": "text"
+    },
+    "mvno_name_p1_19": {
+      "x": 1029.07,
+      "y": 1091.44,
+      "size": 10.0,
+      "page": 1,
+      "source": [
+        "mvno_name"
+      ],
+      "type": "text"
+    },
+    "subscriber_name_print_p1_20": {
+      "x": 887.39,
+      "y": 201.66,
+      "size": 5.0,
+      "page": 1,
+      "source": [
+        "subscriber_name_print"
+      ],
+      "type": "text"
+    }
+  },
+  "vmap": {},
+  "fixed_flags": {
+    "intl_roaming_block": []
+  }
+}
