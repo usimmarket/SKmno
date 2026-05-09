@@ -1,458 +1,222 @@
 {
   "meta": {
+    "pdf": "template.pdf",
+    "units": "px",
+    "yOrigin": "top",
+    "previewW": 1299,
+    "previewH": 1841,
+    "nudgeX": 56.69,
+    "nudgeY": -85.04,
+    "scaleX": 1,
+    "scaleY": 1,
     "version": "3.5",
     "unit": "pt",
     "origin": "bottom-left"
   },
   "fields": {
-    "join_type__new": {
-      "x": 68,
-      "y": 755,
+    "plan_name_p1_1": {
+      "x": 202,
+      "y": 625,
       "size": 12,
       "page": 1,
-      "type": "checkbox",
-      "source": [
-        "join_type"
-      ],
-      "on_value": "new"
-    },
-    "join_type__port": {
-      "x": 92,
-      "y": 755,
-      "size": 12,
-      "page": 1,
-      "type": "checkbox",
-      "source": [
-        "join_type"
-      ],
-      "on_value": "port"
-    },
-    "plan_name": {
-      "x": 105,
-      "y": 644,
-      "size": 12,
-      "page": 1,
-      "type": "text",
       "source": [
         "plan_name"
-      ]
+      ],
+      "type": "text"
     },
-    "base_monthly_fee": {
-      "x": 155,
-      "y": 626,
-      "size": 10,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "base_monthly_fee"
-      ]
-    },
-    "plan_disc": {
-      "x": 155,
-      "y": 606,
-      "size": 10,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "plan_disc"
-      ]
-    },
-    "plan_disc_1": {
-      "x": 155,
-      "y": 588,
-      "size": 10,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "plan_disc"
-      ]
-    },
-    "final_monthly_fee": {
-      "x": 515,
-      "y": 642,
-      "size": 10,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "final_monthly_fee"
-      ]
-    },
-    "final_monthly_fee_1": {
-      "x": 515,
-      "y": 588,
-      "size": 11,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "final_monthly_fee"
-      ]
-    },
-    "subscriber_name_print": {
-      "x": 134,
-      "y": 521,
+    "subscriber_name_print_p1_2": {
+      "x": 299,
+      "y": 986,
       "size": 8,
       "page": 1,
-      "type": "text",
       "source": [
         "subscriber_name_print"
-      ]
+      ],
+      "type": "text"
     },
-    "subscriber_name_print_1": {
-      "x": 471,
-      "y": 685,
+    "subscriber_name_print_p1_3": {
+      "x": 842,
+      "y": 1030,
       "size": 5,
       "page": 1,
-      "type": "text",
       "source": [
         "subscriber_name_print"
-      ]
+      ],
+      "type": "text"
     },
-    "subscriber_name_print_2": {
-      "x": 199,
-      "y": 426,
+    "subscriber_name_print_p1_4": {
+      "x": 382,
+      "y": 297,
       "size": 5,
       "page": 1,
-      "type": "text",
       "source": [
         "subscriber_name_print"
-      ]
+      ],
+      "type": "text"
     },
-    "subscriber_name_print_3": {
-      "x": 444,
-      "y": 388,
-      "size": 5,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "subscriber_name_print"
-      ]
-    },
-    "subscriber_name_print_4": {
-      "x": 444,
-      "y": 240,
-      "size": 5,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "subscriber_name_print"
-      ]
-    },
-    "subscriber_name_print_5": {
-      "x": 406,
-      "y": 88,
-      "size": 7,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "subscriber_name_print"
-      ]
-    },
-    "subscriber_name_print_6": {
-      "x": 443,
-      "y": 553,
-      "size": 5,
-      "page": 2,
-      "type": "text",
-      "source": [
-        "subscriber_name_print"
-      ]
-    },
-    "subscriber_name_print_7": {
-      "x": 430,
-      "y": 121,
-      "size": 6,
-      "page": 2,
-      "type": "text",
-      "source": [
-        "subscriber_name_print"
-      ]
-    },
-    "subscriber_name_print_8": {
-      "x": 430,
-      "y": 67,
-      "size": 6,
-      "page": 2,
-      "type": "text",
-      "source": [
-        "subscriber_name_print"
-      ]
-    },
-    "subscriber_name_print_9": {
-      "x": 430,
-      "y": 44,
-      "size": 6,
-      "page": 3,
-      "type": "text",
-      "source": [
-        "subscriber_name_print"
-      ]
-    },
-    "passport_info_print": {
-      "x": 248,
-      "y": 815,
+    "esim_info_print_p1_5": {
+      "x": 144,
+      "y": -17,
       "size": 8,
       "page": 1,
-      "type": "text",
-      "source": [
-        "passport_info_print"
-      ]
-    },
-    "esim_info_print": {
-      "x": 355,
-      "y": 815,
-      "size": 8,
-      "page": 1,
-      "type": "text",
       "source": [
         "esim_info_print"
-      ]
+      ],
+      "type": "text"
     },
-    "apply_date_year": {
-      "x": 395,
-      "y": 102,
+    "apply_date_year_p1_6": {
+      "x": 751,
+      "y": 223,
       "size": 10,
       "page": 1,
-      "type": "text",
       "source": [
         "apply_date_year"
-      ]
+      ],
+      "type": "text"
     },
-    "apply_date_month": {
-      "x": 461,
-      "y": 102,
+    "apply_date_month_p1_7": {
+      "x": 549,
+      "y": 171,
       "size": 10,
       "page": 1,
-      "type": "text",
       "source": [
         "apply_date_month"
-      ]
+      ],
+      "type": "text"
     },
-    "apply_date_day": {
-      "x": 516,
-      "y": 102,
+    "apply_date_day_p1_8": {
+      "x": 670,
+      "y": 174,
       "size": 10,
       "page": 1,
-      "type": "text",
       "source": [
         "apply_date_day"
-      ]
+      ],
+      "type": "text"
     },
-    "apply_date_year_1": {
-      "x": 270,
-      "y": 548,
+    "addr_p1_9": {
+      "x": 204,
+      "y": 471,
       "size": 10,
-      "page": 2,
-      "type": "text",
-      "source": [
-        "apply_date_year"
-      ]
-    },
-    "apply_date_month_1": {
-      "x": 317,
-      "y": 548,
-      "size": 10,
-      "page": 2,
-      "type": "text",
-      "source": [
-        "apply_date_month"
-      ]
-    },
-    "apply_date_day_1": {
-      "x": 349,
-      "y": 548,
-      "size": 10,
-      "page": 2,
-      "type": "text",
-      "source": [
-        "apply_date_day"
-      ]
-    },
-    "addr": {
-      "x": 127,
-      "y": 138,
-      "size": 10,
-      "page": 2,
-      "type": "text",
+      "page": 1,
       "source": [
         "addr"
-      ]
+      ],
+      "type": "text"
     },
-    "addr_1": {
-      "x": 134,
-      "y": 496,
+    "birth_p1_10": {
+      "x": 441,
+      "y": 340,
       "size": 10,
       "page": 1,
-      "type": "text",
-      "source": [
-        "addr"
-      ]
-    },
-    "birth": {
-      "x": 393,
-      "y": 516,
-      "size": 10,
-      "page": 1,
-      "type": "text",
       "source": [
         "birth"
-      ]
+      ],
+      "type": "text"
     },
-    "birth_1": {
-      "x": 415,
-      "y": 420,
+    "autopay_org_p1_11": {
+      "x": 124,
+      "y": 503,
       "size": 10,
       "page": 1,
-      "type": "text",
-      "source": [
-        "birth"
-      ]
-    },
-    "autopay_org": {
-      "x": 198,
-      "y": 437,
-      "size": 10,
-      "page": 1,
-      "type": "text",
       "source": [
         "autopay_org"
-      ]
+      ],
+      "type": "text"
     },
-    "autopay_number": {
-      "x": 316,
-      "y": 437,
+    "autopay_number_p1_12": {
+      "x": 239,
+      "y": 503,
       "size": 10,
       "page": 1,
-      "type": "text",
       "source": [
         "autopay_number"
-      ]
+      ],
+      "type": "text"
     },
-    "card_exp_year": {
-      "x": 511,
-      "y": 437,
+    "card_exp_year_p1_13": {
+      "x": 530,
+      "y": 503,
       "size": 10,
       "page": 1,
-      "type": "text",
       "source": [
         "card_exp_year"
-      ]
+      ],
+      "type": "text"
     },
-    "card_exp_month": {
-      "x": 538,
-      "y": 437,
+    "card_exp_month_p1_14": {
+      "x": 624,
+      "y": 503,
       "size": 10,
       "page": 1,
-      "type": "text",
       "source": [
         "card_exp_month"
-      ]
-    },
-    "sim_type__esim": {
-      "x": 396,
-      "y": 334,
-      "size": 12,
-      "page": 1,
-      "type": "checkbox",
-      "source": [
-        "sim_type"
       ],
-      "on_value": "esim"
+      "type": "text"
     },
-    "sim_serial": {
-      "x": 115,
-      "y": 334,
+    "sim_serial_p1_15": {
+      "x": 441,
+      "y": 582,
       "size": 12,
       "page": 1,
-      "type": "text",
       "source": [
         "sim_serial"
-      ]
+      ],
+      "type": "text"
     },
-    "port_number": {
-      "x": 164,
-      "y": 207,
-      "size": 14,
-      "page": 1,
-      "type": "text",
-      "source": [
-        "port_number"
-      ]
-    },
-    "mnp1": {
-      "x": 145,
-      "y": 189,
+    "mnp1_p1_16": {
+      "x": 806,
+      "y": 700,
       "size": 12,
       "page": 1,
-      "type": "checkbox",
       "source": [
         "mnp1"
       ],
-      "on_value": "Y"
+      "type": "text"
     },
-    "prev_carrier_kt": {
-      "x": 382,
-      "y": 209,
+    "mnp2_p1_17": {
+      "x": 875,
+      "y": 699,
       "size": 12,
       "page": 1,
-      "type": "checkbox",
-      "source": [
-        "prev_carrier"
-      ],
-      "on_value": "kt"
-    },
-    "prev_carrier_lgu": {
-      "x": 409,
-      "y": 209,
-      "size": 12,
-      "page": 1,
-      "type": "checkbox",
-      "source": [
-        "prev_carrier"
-      ],
-      "on_value": "lgu"
-    },
-    "prev_carrier_mvno": {
-      "x": 448,
-      "y": 209,
-      "size": 12,
-      "page": 1,
-      "type": "checkbox",
-      "source": [
-        "prev_carrier"
-      ],
-      "on_value": "mvno"
-    },
-    "mnp2": {
-      "x": 255,
-      "y": 169,
-      "size": 12,
-      "page": 1,
-      "type": "checkbox",
       "source": [
         "mnp2"
       ],
-      "on_value": "Y"
+      "type": "text"
     },
-    "mnp3": {
-      "x": 429,
-      "y": 189,
+    "mnp3_p1_18": {
+      "x": 969,
+      "y": 701,
       "size": 12,
       "page": 1,
-      "type": "checkbox",
       "source": [
         "mnp3"
       ],
-      "on_value": "Y"
+      "type": "text"
     },
-    "mvno_name": {
-      "x": 488,
-      "y": 208,
+    "mvno_name_p1_19": {
+      "x": 1075,
+      "y": 699,
       "size": 10,
       "page": 1,
-      "type": "text",
       "source": [
         "mvno_name"
-      ]
+      ],
+      "type": "text"
+    },
+    "subscriber_name_print_p1_20": {
+      "x": 927,
+      "y": 1630,
+      "size": 5,
+      "page": 1,
+      "source": [
+        "subscriber_name_print"
+      ],
+      "type": "text"
     }
+  },
+  "vmap": {},
+  "fixed_flags": {
+    "intl_roaming_block": []
   }
 }
