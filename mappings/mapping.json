@@ -330,6 +330,26 @@
       "source": [
         "apply_date_day"
       ]
+    },
+    "addr_detail_p1_28": {
+      "x": 343,
+      "y": 1258,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "addr_detail"
+      ]
+    },
+    "addr_road_p1_29": {
+      "x": 432,
+      "y": 1257,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "addr_road"
+      ]
     }
   }
 }
