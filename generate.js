@@ -142,7 +142,7 @@ exports.handler = async (event) => {
       isBase64Encoded: true,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `${isDownload ? "attachment" : "inline"}; filename="freeT_application.pdf"`,
+        "Content-Disposition": `${isDownload ? "attachment" : "inline"}; filename="SK_foreigner_application.pdf"`,
         "Cache-Control": "no-store"
       },
       body
