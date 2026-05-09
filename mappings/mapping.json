@@ -1,222 +1,335 @@
 {
   "meta": {
-    "pdf": "template.pdf",
-    "units": "px",
-    "yOrigin": "top",
-    "previewW": 1299,
-    "previewH": 1841,
-    "nudgeX": 56.69,
-    "nudgeY": -85.04,
-    "scaleX": 1,
-    "scaleY": 1,
     "version": "3.5",
     "unit": "pt",
-    "origin": "bottom-left"
+    "origin": "bottom-left",
+    "pdf": "template.pdf"
   },
   "fields": {
-    "plan_name_p1_1": {
-      "x": 202,
-      "y": 625,
+    "join_type__new": {
+      "x": 160.67,
+      "y": 1571.83,
       "size": 12,
       "page": 1,
+      "type": "checkbox",
+      "source": [
+        "join_type"
+      ],
+      "on_value": "new"
+    },
+    "join_type__port": {
+      "x": 252.67,
+      "y": 1571.17,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "join_type"
+      ],
+      "on_value": "port"
+    },
+    "plan_name_p1_1": {
+      "x": 218,
+      "y": 1111.83,
+      "size": 12,
+      "page": 1,
+      "type": "text",
       "source": [
         "plan_name"
-      ],
-      "type": "text"
+      ]
     },
-    "subscriber_name_print_p1_2": {
-      "x": 299,
-      "y": 986,
-      "size": 8,
-      "page": 1,
-      "source": [
-        "subscriber_name_print"
-      ],
-      "type": "text"
-    },
-    "subscriber_name_print_p1_3": {
-      "x": 842,
-      "y": 1030,
-      "size": 5,
-      "page": 1,
-      "source": [
-        "subscriber_name_print"
-      ],
-      "type": "text"
-    },
-    "subscriber_name_print_p1_4": {
-      "x": 382,
-      "y": 297,
-      "size": 5,
-      "page": 1,
-      "source": [
-        "subscriber_name_print"
-      ],
-      "type": "text"
-    },
-    "esim_info_print_p1_5": {
-      "x": 144,
-      "y": -17,
-      "size": 8,
-      "page": 1,
-      "source": [
-        "esim_info_print"
-      ],
-      "type": "text"
-    },
-    "apply_date_year_p1_6": {
-      "x": 751,
-      "y": 223,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "apply_date_year"
-      ],
-      "type": "text"
-    },
-    "apply_date_month_p1_7": {
-      "x": 549,
-      "y": 171,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "apply_date_month"
-      ],
-      "type": "text"
-    },
-    "apply_date_day_p1_8": {
-      "x": 670,
-      "y": 174,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "apply_date_day"
-      ],
-      "type": "text"
-    },
-    "addr_p1_9": {
-      "x": 204,
-      "y": 471,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "addr"
-      ],
-      "type": "text"
-    },
-    "birth_p1_10": {
-      "x": 441,
-      "y": 340,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "birth"
-      ],
-      "type": "text"
-    },
-    "autopay_org_p1_11": {
-      "x": 124,
-      "y": 503,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "autopay_org"
-      ],
-      "type": "text"
-    },
-    "autopay_number_p1_12": {
-      "x": 239,
-      "y": 503,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "autopay_number"
-      ],
-      "type": "text"
-    },
-    "card_exp_year_p1_13": {
-      "x": 530,
-      "y": 503,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "card_exp_year"
-      ],
-      "type": "text"
-    },
-    "card_exp_month_p1_14": {
-      "x": 624,
-      "y": 503,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "card_exp_month"
-      ],
-      "type": "text"
-    },
-    "sim_serial_p1_15": {
-      "x": 441,
-      "y": 582,
+    "sim_model_print_p1_2": {
+      "x": 198.67,
+      "y": 1151.83,
       "size": 12,
       "page": 1,
+      "type": "text",
+      "source": [
+        "sim_model_print"
+      ]
+    },
+    "esim_type_print_p1_3": {
+      "x": 193.33,
+      "y": 1151.83,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "esim_type_print"
+      ]
+    },
+    "sim_serial_p1_4": {
+      "x": 442.67,
+      "y": 1153.17,
+      "size": 12,
+      "page": 1,
+      "type": "text",
       "source": [
         "sim_serial"
-      ],
-      "type": "text"
+      ]
     },
-    "mnp1_p1_16": {
-      "x": 806,
-      "y": 700,
+    "subscriber_name_print_p1_5": {
+      "x": 358,
+      "y": 1422.5,
       "size": 12,
       "page": 1,
-      "source": [
-        "mnp1"
-      ],
-      "type": "text"
-    },
-    "mnp2_p1_17": {
-      "x": 875,
-      "y": 699,
-      "size": 12,
-      "page": 1,
-      "source": [
-        "mnp2"
-      ],
-      "type": "text"
-    },
-    "mnp3_p1_18": {
-      "x": 969,
-      "y": 701,
-      "size": 12,
-      "page": 1,
-      "source": [
-        "mnp3"
-      ],
-      "type": "text"
-    },
-    "mvno_name_p1_19": {
-      "x": 1075,
-      "y": 699,
-      "size": 10,
-      "page": 1,
-      "source": [
-        "mvno_name"
-      ],
-      "type": "text"
-    },
-    "subscriber_name_print_p1_20": {
-      "x": 927,
-      "y": 1630,
-      "size": 5,
-      "page": 1,
+      "type": "text",
       "source": [
         "subscriber_name_print"
+      ]
+    },
+    "birth_p1_6": {
+      "x": 458,
+      "y": 1380,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "birth"
+      ]
+    },
+    "passport_no_p1_7": {
+      "x": 816,
+      "y": 1380,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "passport_no"
+      ]
+    },
+    "nationality_p1_8": {
+      "x": 276,
+      "y": 1339,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "nationality"
+      ]
+    },
+    "addr_p1_9": {
+      "x": 258,
+      "y": 1255,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "addr"
+      ]
+    },
+    "port_mid4_p1_10": {
+      "x": 458,
+      "y": 1473,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "port_mid4"
+      ]
+    },
+    "port_last4_p1_11": {
+      "x": 605,
+      "y": 1471,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "port_last4"
+      ]
+    },
+    "port_mid4_p1_12": {
+      "x": 418,
+      "y": 1037,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "port_mid4"
+      ]
+    },
+    "port_last4_p1_13": {
+      "x": 491,
+      "y": 1041,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "port_last4"
+      ]
+    },
+    "mvno_name_p1_14": {
+      "x": 1052,
+      "y": 1038,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "mvno_name"
+      ]
+    },
+    "esim_info_print_p1_15": {
+      "x": 121,
+      "y": 1718,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "esim_info_print"
+      ]
+    },
+    "card_exp_year_p1_16": {
+      "x": 629,
+      "y": 1222,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "card_exp_year"
+      ]
+    },
+    "card_exp_month_p1_17": {
+      "x": 710,
+      "y": 1226,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "card_exp_month"
+      ]
+    },
+    "prev_carrier__kt": {
+      "x": 823,
+      "y": 1035,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
       ],
-      "type": "text"
+      "on_value": "kt"
+    },
+    "prev_carrier__lgu": {
+      "x": 891,
+      "y": 1035,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
+      ],
+      "on_value": "lgu"
+    },
+    "prev_carrier__mvno": {
+      "x": 978,
+      "y": 1037,
+      "size": 12,
+      "page": 1,
+      "type": "checkbox",
+      "source": [
+        "prev_carrier"
+      ],
+      "on_value": "mvno"
+    },
+    "autopay_org_p1_18": {
+      "x": 132,
+      "y": 1220,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "autopay_org"
+      ]
+    },
+    "autopay_number_p1_19": {
+      "x": 249,
+      "y": 1223,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "autopay_number"
+      ]
+    },
+    "subscriber_name_print_p1_20": {
+      "x": 291,
+      "y": 763,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
+    },
+    "subscriber_name_print_p1_21": {
+      "x": 854,
+      "y": 715,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
+    },
+    "passport_no_p1_22": {
+      "x": 277,
+      "y": 715,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "passport_no"
+      ]
+    },
+    "birth_p1_23": {
+      "x": 859,
+      "y": 756,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "birth"
+      ]
+    },
+    "subscriber_name_print_p1_24": {
+      "x": 920,
+      "y": 143,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "subscriber_name_print"
+      ]
+    },
+    "apply_date_year_p1_25": {
+      "x": 790,
+      "y": 187,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "apply_date_year"
+      ]
+    },
+    "apply_date_month_p1_26": {
+      "x": 946,
+      "y": 188,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "apply_date_month"
+      ]
+    },
+    "apply_date_day_p1_27": {
+      "x": 1054,
+      "y": 190,
+      "size": 12,
+      "page": 1,
+      "type": "text",
+      "source": [
+        "apply_date_day"
+      ]
     }
-  },
-  "vmap": {},
-  "fixed_flags": {
-    "intl_roaming_block": []
   }
 }
