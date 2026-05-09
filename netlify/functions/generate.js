@@ -4,27 +4,20 @@ const { PDFDocument } = require("pdf-lib");
 const fontkit = require("@pdf-lib/fontkit");
 
 function b64urlDecode(str){
+  // base64url -> base64
   const b64 = str.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((str.length + 3) % 4);
   return Buffer.from(b64, "base64").toString("utf8");
 }
 
 function getValueFromSource(data, source, fallbackKey){
   if(Array.isArray(source) && source.length){
+    // concatenate sources (common for split fields)
     return source.map(s => (data[s] ?? "")).join("");
   }
   if(typeof source === "string" && source){
     return data[source] ?? "";
   }
   return data[fallbackKey] ?? "";
-}
-
-function firstExisting(paths){
-  for(const p of paths){
-    try{
-      if(p && fs.existsSync(p)) return p;
-    }catch(e){}
-  }
-  return null;
 }
 
 exports.handler = async (event) => {
@@ -49,35 +42,8 @@ exports.handler = async (event) => {
     const dataRaw = payload.data || {};
     const data = { ...dataRaw };
 
-// --- Address derived fields (SKMNO) ---
-// Form collects addr_road + addr_detail, but mapping uses "addr" (and sometimes addr_1).
-// Keep this server-side so index.html is untouched.
-if(!String(data.addr || "").trim()){
-  const road = String(data.addr_road || "").trim();
-  const detail = String(data.addr_detail || "").trim();
-  const combined = (road + (detail ? (" " + detail) : "")).trim();
-  if(combined) data.addr = combined;
-}
-if(!String(data.addr_1 || "").trim() && String(data.addr || "").trim()){
-  data.addr_1 = data.addr;
-}
-// --- end address ---
-
-
-    // When 가입유형 is 신규, exclude 번호이동 전용 값들이 PDF에 찍히지 않도록 무조건 제거
+    // Guard: when 가입유형 is 신규, exclude 번호이동 전용 값들이 PDF에 찍히지 않도록 무조건 제거
     const jt = String(data.join_type || '').toLowerCase();
-
-// 번호이동 선택 시에만 mnp V 체크가 PDF에 찍히도록 서버에서 강제로 값 생성
-if (jt === 'port') {
-  data.mnp1 = 'Y';
-  data.mnp2 = 'Y';
-  data.mnp3 = 'Y';
-} else {
-  data.mnp1 = '';
-  data.mnp2 = '';
-  data.mnp3 = '';
-}
-
     if (jt !== 'port') {
       data.prev_carrier = '';
       data.mnp_pay_type = '';
@@ -85,47 +51,36 @@ if (jt === 'port') {
       data.mvno_name = '';
     }
 
-    // Netlify Functions run in a separate bundle. Static site files are NOT automatically available
-    // unless added via netlify.toml functions.included_files.
-    // So we resolve paths defensively across likely locations.
-    const cwd = process.cwd();
-    const taskRoot = process.env.LAMBDA_TASK_ROOT || "";
-    const bundleRoot = path.join(__dirname, "..", ".."); // when kept under netlify/functions
-    const candidates = [cwd, taskRoot, bundleRoot, __dirname];
+    // Resolve file paths (repo root is 2 levels up from /netlify/functions)
+    const root = path.join(__dirname, "..", "..");
+    const templatePath = path.join(root, "template.pdf");
+    const fontPath = path.join(root, "malgun.ttf");
+    const mappingPath = path.join(root, "mappings", "mapping.json");
 
-    const templatePath = firstExisting(candidates.map(base => base ? path.join(base, "template.pdf") : null));
-    if(!templatePath){
-      return { statusCode: 500, body: "template.pdf not found. Ensure it's in repo root AND included via netlify.toml [functions].included_files." };
+    if(!fs.existsSync(templatePath)){
+      return { statusCode: 500, body: "template.pdf not found in site root." };
     }
-
-    const mappingPath = firstExisting([
-      ...candidates.map(base => base ? path.join(base, "mapping.json") : null),
-      ...candidates.map(base => base ? path.join(base, "mappings", "mapping.json") : null),
-    ]);
-
-    const fontPath = firstExisting([
-      ...candidates.map(base => base ? path.join(base, "malgun.ttf") : null),
-    ]);
 
     const templateBytes = fs.readFileSync(templatePath);
     const pdfDoc = await PDFDocument.load(templateBytes);
 
     // Embed font (for KR/VN/TH/KH names etc.)
-    let font = undefined;
-    if(fontPath){
+    if(fs.existsSync(fontPath)){
       pdfDoc.registerFontkit(fontkit);
       const fontBytes = fs.readFileSync(fontPath);
-      font = await pdfDoc.embedFont(fontBytes, { subset: true });
+      var font = await pdfDoc.embedFont(fontBytes, { subset: true });
     }
 
     let mapping = { fields: {} };
-    if(mappingPath){
+    if(fs.existsSync(mappingPath)){
       mapping = JSON.parse(fs.readFileSync(mappingPath, "utf8"));
     }
 
     const pages = pdfDoc.getPages();
     const fields = (mapping && mapping.fields) ? mapping.fields : {};
 
+    // Use plain 'V' instead of a special checkmark glyph.
+    // Some fonts (or font subsetting) don't contain the checkmark glyph and it can render as '&&' or tofu.
     const checkMark = "V";
 
     for(const [key, cfg] of Object.entries(fields)){
@@ -163,31 +118,36 @@ if (jt === 'port') {
         cur = String(cur);
 
         const onv = cfg.on_value;
-        const checked = (
-          cur === "1" || cur.toLowerCase() === "true" || cur.toLowerCase() === "yes" ||
-          (onv !== undefined && String(onv) === cur)
-        );
+        const checked = (onv !== undefined)
+          ? (cur === String(onv))
+          : (cur && cur !== "0" && cur !== "false" && cur !== "off");
+
         if(!checked) continue;
 
-        page.drawText(checkMark, { x, y, size, font });
+        page.drawText(checkMark, {
+          x,
+          y,
+          size: size + 2,
+          font
+        });
       }
     }
 
     const outBytes = await pdfDoc.save();
-    const outB64 = Buffer.from(outBytes).toString("base64");
+    const body = Buffer.from(outBytes).toString("base64");
+    const isDownload = payload.action === "download";
 
-    const isDownload = String(payload.action || "").toLowerCase() === "download";
     return {
       statusCode: 200,
+      isBase64Encoded: true,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": (isDownload ? 'attachment; filename="output.pdf"' : 'inline; filename="output.pdf"'),
-        "Cache-Control": "no-store",
+        "Content-Disposition": `${isDownload ? "attachment" : "inline"}; filename="SK_foreigner_application.pdf"`,
+        "Cache-Control": "no-store"
       },
-      body: outB64,
-      isBase64Encoded: true
+      body
     };
   }catch(err){
-    return { statusCode: 500, body: "PDF generation failed: " + (err && err.stack ? err.stack : String(err)) };
+    return { statusCode: 500, body: String((err && err.stack) || err) };
   }
 };
