@@ -150,8 +150,8 @@
     },
     "mvno_name_p1_13": {
       "x": 1052,
-      "y": 1038,
-      "size": 12,
+      "y": 1037,
+      "size": 18,
       "page": 1,
       "type": "text",
       "source": [
@@ -169,7 +169,7 @@
       ]
     },
     "prev_carrier__kt": {
-      "x": 810,
+      "x": 808,
       "y": 1037,
       "size": 24,
       "page": 1,
@@ -181,8 +181,8 @@
     },
     "prev_carrier__lgu": {
       "x": 891,
-      "y": 1035,
-      "size": 12,
+      "y": 1037,
+      "size": 24,
       "page": 1,
       "type": "checkbox",
       "source": [
@@ -193,7 +193,7 @@
     "prev_carrier__mvno": {
       "x": 978,
       "y": 1037,
-      "size": 12,
+      "size": 24,
       "page": 1,
       "type": "checkbox",
       "source": [
