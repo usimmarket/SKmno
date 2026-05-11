@@ -70,7 +70,7 @@
     },
     "birth_p1_5": {
       "x": 458,
-      "y": 1384,
+      "y": 1381,
       "size": 18,
       "page": 1,
       "type": "text",
@@ -79,8 +79,8 @@
       ]
     },
     "passport_no_p1_6": {
-      "x": 759,
-      "y": 1384,
+      "x": 758,
+      "y": 1381,
       "size": 18,
       "page": 1,
       "type": "text",
@@ -90,8 +90,8 @@
     },
     "nationality_p1_7": {
       "x": 276,
-      "y": 1339,
-      "size": 12,
+      "y": 1341,
+      "size": 18,
       "page": 1,
       "type": "text",
       "source": [
@@ -100,8 +100,8 @@
     },
     "addr_p1_8": {
       "x": 258,
-      "y": 1255,
-      "size": 12,
+      "y": 1258,
+      "size": 18,
       "page": 1,
       "type": "text",
       "source": [
