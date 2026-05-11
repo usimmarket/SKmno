@@ -169,7 +169,7 @@
       ]
     },
     "prev_carrier__kt": {
-      "x": 808,
+      "x": 809,
       "y": 1037,
       "size": 24,
       "page": 1,
@@ -180,7 +180,7 @@
       "on_value": "kt"
     },
     "prev_carrier__lgu": {
-      "x": 891,
+      "x": 875,
       "y": 1037,
       "size": 24,
       "page": 1,
@@ -191,7 +191,7 @@
       "on_value": "lgu"
     },
     "prev_carrier__mvno": {
-      "x": 978,
+      "x": 960,
       "y": 1037,
       "size": 24,
       "page": 1,
