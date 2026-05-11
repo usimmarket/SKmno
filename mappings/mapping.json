@@ -41,7 +41,7 @@
     "sim_model_print_p1_2": {
       "x": 198.67,
       "y": 1150.17,
-      "size": 17,
+      "size": 20,
       "page": 1,
       "type": "text",
       "source": [
@@ -61,7 +61,7 @@
     "sim_serial_p1_4": {
       "x": 442.67,
       "y": 1150.17,
-      "size": 17,
+      "size": 20,
       "page": 1,
       "type": "text",
       "source": [
@@ -110,7 +110,7 @@
     },
     "port_mid4_p1_9": {
       "x": 460,
-      "y": 1470,
+      "y": 1469,
       "size": 28,
       "page": 1,
       "type": "text",
@@ -120,7 +120,7 @@
     },
     "port_last4_p1_10": {
       "x": 592,
-      "y": 1470,
+      "y": 1469,
       "size": 28,
       "page": 1,
       "type": "text",
@@ -130,7 +130,7 @@
     },
     "port_mid4_p1_11": {
       "x": 421,
-      "y": 1037,
+      "y": 1036,
       "size": 25,
       "page": 1,
       "type": "text",
@@ -140,7 +140,7 @@
     },
     "port_last4_p1_12": {
       "x": 520,
-      "y": 1037,
+      "y": 1036,
       "size": 25,
       "page": 1,
       "type": "text",
