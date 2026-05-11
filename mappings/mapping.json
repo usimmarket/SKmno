@@ -222,9 +222,9 @@
       ]
     },
     "subscriber_name_print_p1_17": {
-      "x": 287,
-      "y": 771,
-      "size": 17,
+      "x": 284,
+      "y": 773,
+      "size": 15,
       "page": 1,
       "type": "text",
       "source": [
@@ -232,9 +232,9 @@
       ]
     },
     "subscriber_name_print_p1_18": {
-      "x": 814,
-      "y": 725,
-      "size": 12,
+      "x": 807,
+      "y": 729,
+      "size": 15,
       "page": 1,
       "type": "text",
       "source": [
@@ -243,7 +243,7 @@
     },
     "passport_no_p1_19": {
       "x": 277,
-      "y": 725,
+      "y": 721,
       "size": 17,
       "page": 1,
       "type": "text",
@@ -253,7 +253,7 @@
     },
     "birth_p1_20": {
       "x": 859,
-      "y": 771,
+      "y": 763,
       "size": 17,
       "page": 1,
       "type": "text",
