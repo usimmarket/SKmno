@@ -130,8 +130,8 @@
     },
     "port_mid4_p1_11": {
       "x": 421,
-      "y": 1041,
-      "size": 22,
+      "y": 1038,
+      "size": 24,
       "page": 1,
       "type": "text",
       "source": [
@@ -140,8 +140,8 @@
     },
     "port_last4_p1_12": {
       "x": 520,
-      "y": 1041,
-      "size": 22,
+      "y": 1038,
+      "size": 24,
       "page": 1,
       "type": "text",
       "source": [
