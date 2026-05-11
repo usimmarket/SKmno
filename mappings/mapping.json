@@ -262,7 +262,7 @@
       ]
     },
     "subscriber_name_print_p1_21": {
-      "x": 879,
+      "x": 877,
       "y": 159,
       "size": 12,
       "page": 1,
@@ -273,7 +273,7 @@
     },
     "apply_date_year_p1_22": {
       "x": 831,
-      "y": 193,
+      "y": 192,
       "size": 20,
       "page": 1,
       "type": "text",
@@ -282,8 +282,8 @@
       ]
     },
     "apply_date_month_p1_23": {
-      "x": 965,
-      "y": 193,
+      "x": 969,
+      "y": 192,
       "size": 20,
       "page": 1,
       "type": "text",
@@ -292,8 +292,8 @@
       ]
     },
     "apply_date_day_p1_24": {
-      "x": 1084,
-      "y": 193,
+      "x": 1088,
+      "y": 192,
       "size": 20,
       "page": 1,
       "type": "text",
