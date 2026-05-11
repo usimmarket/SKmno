@@ -160,8 +160,8 @@
     },
     "esim_info_print_p1_14": {
       "x": 416.67,
-      "y": 1182,
-      "size": 12,
+      "y": 1197,
+      "size": 16,
       "page": 1,
       "type": "text",
       "source": [
