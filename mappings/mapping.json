@@ -169,9 +169,9 @@
       ]
     },
     "prev_carrier__kt": {
-      "x": 823,
-      "y": 1035,
-      "size": 12,
+      "x": 810,
+      "y": 1037,
+      "size": 24,
       "page": 1,
       "type": "checkbox",
       "source": [
