@@ -70,8 +70,8 @@
     },
     "birth_p1_5": {
       "x": 458,
-      "y": 1380,
-      "size": 12,
+      "y": 1384,
+      "size": 18,
       "page": 1,
       "type": "text",
       "source": [
@@ -79,9 +79,9 @@
       ]
     },
     "passport_no_p1_6": {
-      "x": 816,
-      "y": 1380,
-      "size": 12,
+      "x": 759,
+      "y": 1384,
+      "size": 18,
       "page": 1,
       "type": "text",
       "source": [
@@ -109,9 +109,9 @@
       ]
     },
     "port_mid4_p1_9": {
-      "x": 492,
-      "y": 1469,
-      "size": 24,
+      "x": 460,
+      "y": 1471,
+      "size": 26,
       "page": 1,
       "type": "text",
       "source": [
@@ -119,9 +119,9 @@
       ]
     },
     "port_last4_p1_10": {
-      "x": 621,
-      "y": 1469,
-      "size": 24,
+      "x": 600,
+      "y": 1471,
+      "size": 26,
       "page": 1,
       "type": "text",
       "source": [
@@ -322,8 +322,8 @@
       ]
     },
     "subscriber_name_p1_27": {
-      "x": 367,
-      "y": 1418,
+      "x": 364,
+      "y": 1420,
       "size": 18,
       "page": 1,
       "type": "text",
