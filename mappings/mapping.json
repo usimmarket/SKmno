@@ -31,7 +31,7 @@
     "plan_name_p1_1": {
       "x": 218,
       "y": 1111.83,
-      "size": 12,
+      "size": 20,
       "page": 1,
       "type": "text",
       "source": [
@@ -40,8 +40,8 @@
     },
     "sim_model_print_p1_2": {
       "x": 198.67,
-      "y": 1151.83,
-      "size": 12,
+      "y": 1152.17,
+      "size": 17,
       "page": 1,
       "type": "text",
       "source": [
@@ -50,8 +50,8 @@
     },
     "esim_type_print_p1_3": {
       "x": 193.33,
-      "y": 1151.83,
-      "size": 12,
+      "y": 1152.17,
+      "size": 17,
       "page": 1,
       "type": "text",
       "source": [
@@ -60,8 +60,8 @@
     },
     "sim_serial_p1_4": {
       "x": 442.67,
-      "y": 1153.17,
-      "size": 12,
+      "y": 1152.17,
+      "size": 17,
       "page": 1,
       "type": "text",
       "source": [
@@ -202,8 +202,8 @@
       "on_value": "mvno"
     },
     "autopay_org_p1_15": {
-      "x": 250,
-      "y": 1225,
+      "x": 230,
+      "y": 1226,
       "size": 14,
       "page": 1,
       "type": "text",
@@ -212,8 +212,8 @@
       ]
     },
     "autopay_number_p1_16": {
-      "x": 334,
-      "y": 1225,
+      "x": 313,
+      "y": 1226,
       "size": 14,
       "page": 1,
       "type": "text",
@@ -302,8 +302,8 @@
       ]
     },
     "autopay_exp_p1_25": {
-      "x": 444,
-      "y": 1225,
+      "x": 472,
+      "y": 1226,
       "size": 14,
       "page": 1,
       "type": "text",
@@ -313,7 +313,7 @@
     },
     "autopay_method_print_p1_26": {
       "x": 125,
-      "y": 1225,
+      "y": 1226,
       "size": 14,
       "page": 1,
       "type": "text",
