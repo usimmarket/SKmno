@@ -7,9 +7,9 @@
   },
   "fields": {
     "join_type__new": {
-      "x": 154.67,
-      "y": 1572.83,
-      "size": 16,
+      "x": 150.67,
+      "y": 1571.83,
+      "size": 24,
       "page": 1,
       "type": "checkbox",
       "source": [
@@ -19,8 +19,8 @@
     },
     "join_type__port": {
       "x": 252.67,
-      "y": 1572.83,
-      "size": 16,
+      "y": 1571.83,
+      "size": 24,
       "page": 1,
       "type": "checkbox",
       "source": [
