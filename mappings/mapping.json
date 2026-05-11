@@ -321,14 +321,14 @@
         "autopay_exp"
       ]
     },
-    "autopay_holder_print_p1_27": {
-      "x": 111,
+    "autopay_method_p1_27": {
+      "x": 108,
       "y": 1221,
       "size": 12,
       "page": 1,
       "type": "text",
       "source": [
-        "autopay_holder_print"
+        "autopay_method"
       ]
     }
   }
