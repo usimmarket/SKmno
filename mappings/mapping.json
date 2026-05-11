@@ -244,7 +244,7 @@
     "passport_no_p1_19": {
       "x": 277,
       "y": 721,
-      "size": 17,
+      "size": 19,
       "page": 1,
       "type": "text",
       "source": [
@@ -254,7 +254,7 @@
     "birth_p1_20": {
       "x": 859,
       "y": 763,
-      "size": 17,
+      "size": 19,
       "page": 1,
       "type": "text",
       "source": [
@@ -262,8 +262,8 @@
       ]
     },
     "subscriber_name_print_p1_21": {
-      "x": 920,
-      "y": 143,
+      "x": 891,
+      "y": 163,
       "size": 12,
       "page": 1,
       "type": "text",
@@ -272,9 +272,9 @@
       ]
     },
     "apply_date_year_p1_22": {
-      "x": 790,
-      "y": 187,
-      "size": 12,
+      "x": 831,
+      "y": 196,
+      "size": 20,
       "page": 1,
       "type": "text",
       "source": [
@@ -283,8 +283,8 @@
     },
     "apply_date_month_p1_23": {
       "x": 946,
-      "y": 188,
-      "size": 12,
+      "y": 196,
+      "size": 20,
       "page": 1,
       "type": "text",
       "source": [
@@ -293,8 +293,8 @@
     },
     "apply_date_day_p1_24": {
       "x": 1054,
-      "y": 190,
-      "size": 12,
+      "y": 196,
+      "size": 20,
       "page": 1,
       "type": "text",
       "source": [
