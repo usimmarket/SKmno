@@ -90,7 +90,7 @@
     },
     "nationality_p1_7": {
       "x": 276,
-      "y": 1341,
+      "y": 1339,
       "size": 18,
       "page": 1,
       "type": "text",
@@ -202,9 +202,9 @@
       "on_value": "mvno"
     },
     "autopay_org_p1_15": {
-      "x": 270,
-      "y": 1220,
-      "size": 12,
+      "x": 250,
+      "y": 1225,
+      "size": 14,
       "page": 1,
       "type": "text",
       "source": [
@@ -212,9 +212,9 @@
       ]
     },
     "autopay_number_p1_16": {
-      "x": 351,
-      "y": 1223,
-      "size": 12,
+      "x": 334,
+      "y": 1225,
+      "size": 14,
       "page": 1,
       "type": "text",
       "source": [
@@ -302,9 +302,9 @@
       ]
     },
     "autopay_exp_p1_25": {
-      "x": 660,
-      "y": 1224,
-      "size": 12,
+      "x": 444,
+      "y": 1225,
+      "size": 14,
       "page": 1,
       "type": "text",
       "source": [
@@ -312,9 +312,9 @@
       ]
     },
     "autopay_method_print_p1_26": {
-      "x": 140,
-      "y": 1219,
-      "size": 12,
+      "x": 125,
+      "y": 1225,
+      "size": 14,
       "page": 1,
       "type": "text",
       "source": [
