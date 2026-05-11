@@ -367,6 +367,7 @@ label.radio:has(input:checked){border-color:rgba(6,182,212,.55);background:rgba(
           </div>
         </div>
         <input type="hidden" id="autopay_exp" name="autopay_exp" value="">
+        <input type="hidden" id="autopay_method_print" name="autopay_method_print" value="※계좌이체">
       </div>
     </div>
   </section>
@@ -576,16 +577,22 @@ function syncSim() {
 function syncAutopay() {
   const m = document.querySelector('input[name="autopay_method"]:checked')?.value || "bank";
   const card = document.getElementById("card_fields");
+  const exp = document.getElementById("autopay_exp");
+  const methodPrint = document.getElementById("autopay_method_print");
   card.style.display = (m==="card") ? "" : "none";
+
+  if(methodPrint) methodPrint.value = (m === "card") ? "※신용카드" : "※계좌이체";
+
   if(m!=="card") {
     document.getElementById("card_exp_year").value=""; 
     document.getElementById("card_exp_month").value="";
-    document.getElementById("autopay_exp").value="";
+    if(exp) exp.value="";
   } else {
-    // update autopay_exp
-    const yy = (document.getElementById("card_exp_year").value||"").padStart(2,"0");
-    const mm = (document.getElementById("card_exp_month").value||"").padStart(2,"0");
-    if(yy && mm) document.getElementById("autopay_exp").value = yy + "/" + mm;
+    const yyRaw = (document.getElementById("card_exp_year").value || "").replace(/\D/g, "");
+    const mmRaw = (document.getElementById("card_exp_month").value || "").replace(/\D/g, "");
+    const yy = yyRaw ? yyRaw.padStart(2,"0").slice(-2) : "";
+    const mm = mmRaw ? mmRaw.padStart(2,"0").slice(-2) : "";
+    if(exp) exp.value = (yy && mm) ? "(" + yy + "/" + mm + ")" : "";
   }
 }
 
